@@ -6,26 +6,26 @@ import { AdminSidebarState } from "@/components/redux/action";
 import AdminSidebar from "./AdminSidebar";
 
 
-const AdminSidebarWrapper = ()=>
-{
+const AdminSidebarWrapper = () => {
 
     const adminSidebar = useSelector(state => state.adminSidebar)
-    console.log('Admin SIdebar: ',adminSidebar)
-    return(
+    console.log('Admin SIdebar: ', adminSidebar)
+    return (
         <>
-        <div>
-            {adminSidebar?(
-                <>
-                <AdminSidebar/>
-                </>
-            ):(
-                ''
-            )}
-        </div>
+            <div>
+                {adminSidebar ? (
+                    <>
+                        <div>
+                            <AdminSidebar />
+                        </div>
+                    </>
+                ) : (
+                    ''
+                )}
+            </div>
         </>
     )
 }
 
 
 export default AdminSidebarWrapper;
-

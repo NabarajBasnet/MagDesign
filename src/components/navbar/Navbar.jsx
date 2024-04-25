@@ -12,11 +12,10 @@ const Navbar = () => {
     const [navsidebar, setNavsidebar] = useState(false);
 
     // Redux
-    const navsidebarState = useSelector(state=>state.SideNavbarState)
+    const navsidebarState = useSelector(state => state.SideNavbarState)
     const dispatch = useDispatch()
 
-    const DispatchnavsidebarState = ()=>
-    {
+    const DispatchnavsidebarState = () => {
         dispatch(SideNavbarState(!navsidebarState))
     }
 
@@ -25,19 +24,25 @@ const Navbar = () => {
         <>
             <div className="flex flex-row-reverse w-full">
                 <nav className="flex flex-row items-start w-full">
-                    <div className="flex flex-row items-center justify-around p-8 border border-gray-300 w-full">
+                    <div className="flex lg:flex-row md:flex-col sm:flex-col items-center justify-around p-8 border border-gray-300 lg:w-full md:w-full">
                         <div>
-                            <div className="flex flex-row items-center p-2 border w-full border-gray-400 rounded-3xl">
+                            <h1 className="md:flex sm:flex lg:hidden font-bold text-black text-2xlbefore:">MAGDESIGN</h1>
+                        </div>
+
+                        <div>
+                            <div className="flex md:hidden sm:hidden lg:flex lg:flex-row items-center p-2 border w-full border-gray-400 rounded-3xl">
                                 <img src="/icons/searchicon.png" className="w-6 cursor-pointer" />
-                                <input type="text" placeholder="Search..." className="outline-none border-none w-80 bg-transparent" />
+                                <input type="text" placeholder="Search..." className="outline-none border-none lg:w-80 md:w-40 sm:w-20 bg-transparent " />
                             </div>
                         </div>
 
                         <div className="14">
                             <Link href={'/'}>
-                                <h1 className="font-bold text-black text-2xlbefore:">MAGDESIGN</h1>
+                                <h1 className="md:hidden sm:hidden lg:flex font-bold text-black text-2xlbefore:">MAGDESIGN</h1>
                             </Link>
                         </div>
+
+
 
                         <div className="flex flex-row items-center justify-between">
                             <div className="mr-64">
@@ -48,14 +53,22 @@ const Navbar = () => {
                                 </ul>
                             </div>
 
-                            <div>
-                                {navsidebarState?(
-                                <img onClick={DispatchnavsidebarState} src={"icons/closewindow.png"} className="cursor-pointer w-8" />
 
-                                ):(
-                                <img onClick={DispatchnavsidebarState} src={"icons/burgermenu.png"} className="cursor-pointer w-8" />
+                            <div>
+                                {navsidebarState ? (
+                                    <img onClick={DispatchnavsidebarState} src={"icons/closewindow.png"} className="cursor-pointer w-8" />
+
+                                ) : (
+                                    <img onClick={DispatchnavsidebarState} src={"icons/burgermenu.png"} className="cursor-pointer w-8" />
 
                                 )}
+                            </div>
+
+                        </div>
+                        <div>
+                            <div className="flex md:flex sm:flex lg:hidden lg:flex-row items-center md:mt-10 sm:mt-6 p-2 border w-full border-gray-400 rounded-3xl">
+                                <img src="/icons/searchicon.png" className="w-6 cursor-pointer" />
+                                <input type="text" placeholder="Search..." className="outline-none border-none lg:w-80 md:w-80 sm:w-80 bg-transparent " />
                             </div>
                         </div>
 
@@ -70,7 +83,7 @@ const Navbar = () => {
                                     <SideNavbar />
                                 </div>
                             </>
-                    )}
+                        )}
                 </div>
             </div>
 
