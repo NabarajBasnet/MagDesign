@@ -9,7 +9,6 @@ import AdminSidebar from "./AdminSidebar";
 const AdminSidebarWrapper = () => {
 
     const adminSidebar = useSelector(state => state.adminSidebar)
-    console.log('Admin SIdebar: ', adminSidebar)
     return (
         <>
             <div>

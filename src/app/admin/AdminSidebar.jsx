@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 
-const AdminSidebar = () => {
+const AdminSidebar = () => 
+{
     return (
-        <div className="bg-rose-400 h-screen w-96 shadow-2xl">
-            <div className="w-full py-6  shadow-xl">
+        <div className="bg-rose-400 h-screen w-64 shadow-2xl">
+            <div className="w-full py-6 shadow-xl">
                 <h2 className=" text-2xl font-serif font-bold px-4">Dashboard</h2>
             </div>
             <nav className="mt-10">

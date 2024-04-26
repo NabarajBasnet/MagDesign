@@ -12,26 +12,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <ReduxProvider>
-                <body>
-                    <Navbar />
-                    <div className="flex flex-row items-start">
-                        <div>
-                            <AdminSidebarWrapper />
-                        </div>
-                        <div className="flex flex-col w-full">
+            <body>
+                <div>
+                    <ReduxProvider>
+                        <Navbar />
+                        <div className="flex flex-row items-start ">
                             <div>
-                                <AdminHeader />
-
+                                <AdminSidebarWrapper />
                             </div>
-                            <div>
-                                {children}
+                            <div className="flex flex-col w-full">
+                                <div>
+                                    <AdminHeader />
+                                </div>
+                                <div>
+                                    {children}
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                </body>
-            </ReduxProvider>
+                    </ReduxProvider>
+                </div>
+            </body>
         </html>
     );
 }
