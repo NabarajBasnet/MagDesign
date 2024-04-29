@@ -59,9 +59,9 @@ export default function Home() {
               <div className="flex flex-row w-full">
                 {blogposts && (
                   <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-                    {blogposts.map((blog) =>
+                    {blogposts.map((blog, _id) =>
                     (
-                      <Link href={'/'}>
+                      <Link href={'/'} key={_id}>
                         <div className="flex flex-col items-center border m-4 rounded-xl shadow-xl">
                           <div>
                             <img src="" alt="Blog Image" className="w-40 h-60" />

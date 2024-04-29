@@ -12,15 +12,18 @@ const AdminSidebarWrapper = () => {
     return (
         <>
             <div>
-                {adminSidebar ? (
-                    <>
-                        <div>
+
+                <div>
+                    {adminSidebar ?
+                        (
                             <AdminSidebar />
-                        </div>
-                    </>
-                ) : (
-                    ''
-                )}
+                        )
+                        :
+                        (
+                            ''
+                        )}
+                </div>
+
             </div>
         </>
     )

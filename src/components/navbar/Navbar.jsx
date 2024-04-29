@@ -60,7 +60,6 @@ const Navbar = () => {
 
                                 ) : (
                                     <img onClick={DispatchnavsidebarState} src={"icons/burgermenu.png"} className="cursor-pointer w-8" />
-
                                 )}
                             </div>
 

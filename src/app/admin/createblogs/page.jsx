@@ -55,15 +55,15 @@ const CreateBlogs = () =>
             <div>
                 <div className="w-full">
                     <div className="w-full ">
-                        <form className="flex flex-col items-center mt-20 justify-center">
-                            <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={introduction} onChange={(e) => setIntroduction(e.target.value)} type="text" placeholder="Introduction..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" placeholder="Category..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={subCategory} onChange={(e) => setSubCategory(e.target.value)} type="text" placeholder="Sub Category..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={bodycontent} onChange={(e) => setBodyContent(e.target.value)} type="text" placeholder="Body..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={links} onChange={(e) => setLinks(e.target.value)} type="text" placeholder="Links..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={author} onChange={(e) => setAuthor(e.target.value)} type="text" placeholder="Author..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
-                            <input value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="Date..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                        <form className="flex flex-col items-center mt-3 justify-center">
+                            <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={introduction} onChange={(e) => setIntroduction(e.target.value)} type="text" placeholder="Introduction..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={category} onChange={(e) => setCategory(e.target.value)} type="text" placeholder="Category..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={subCategory} onChange={(e) => setSubCategory(e.target.value)} type="text" placeholder="Sub Category..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={bodycontent} onChange={(e) => setBodyContent(e.target.value)} type="text" placeholder="Body..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={links} onChange={(e) => setLinks(e.target.value)} type="text" placeholder="Links..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={author} onChange={(e) => setAuthor(e.target.value)} type="text" placeholder="Author..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
+                            <input value={date} onChange={(e) => setDate(e.target.value)} type="date" placeholder="Date..." className="outline-none border  mt-2 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
                             <input value={mentionedpeoples} onChange={(e) => setMentionedPoples(e.target.value)} type="text" placeholder="Mention Peoples..." className="outline-none border  mt-5 rounded-lg p-2 w-1/2 border-gray-400 placeholder:text-gray-600" />
 
                             <button onClick={(e) => CreateBlogPost(e)} className="outline-none border bg-green-400 text-black font-bold rounded-lg mt-10 p-2 w-1/5">Create Blog</button>

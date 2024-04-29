@@ -1,10 +1,22 @@
 'use client'
 
-const User = ()=>
-{
-    return(
+import { useEditor, EditorContent } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+
+
+const User = () => {
+    const editor = useEditor({
+        extensions: [
+            StarterKit,
+        ],
+        content: <>Hello World! 👁</>
+    })
+    return (
         <>
-        <h1>User</h1>
+            <div>
+                <h1>User</h1>
+                <EditorContent editor={editor} />
+            </div>
         </>
     )
 }
