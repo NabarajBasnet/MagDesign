@@ -9,7 +9,7 @@ const AdminSidebar = () => {
 
     return (
         <div className="bg-blue-700 h-screen w-64 shadow-2xl">
-            <div className="w-full py-6 text-white shadow-xl flex flex-row ml-3">
+            <div className="w-full py-6 text-white shadow-xl flex flex-row">
                 <img src="/adminicon/dashboard.png" className="w-8" />
                 {
                     adminSidebar ? (
