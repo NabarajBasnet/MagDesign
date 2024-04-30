@@ -21,15 +21,17 @@ export const PUT = async(req, content)=>
     await mongoose.connect(connectionStr);
     const blogId = content.params.blog;
     const filter = {_id: blogId};
-    const updatedBlog = await BlogPost.findOneAndUpdate(filter, payload);
+    const updatedBlog = await BlogPost.findByIdAndUpdate(filter, payload);
     return NextResponse.json({result: updatedBlog});
 }
 
-export const DELETE = async(req, content)=>
-{
-    const blogId = content.params.blog;
+
+
+export const DELETE = async (req, content) => {
     await mongoose.connect(connectionStr);
-    const deletedPost = await BlogPost.findOneAndDelete(blogId)
-    return NextResponse.json({result: deletedPost, success: true})
+    const blogId = content.params.blog;
+    const data = await BlogPost.findByIdAndDelete(blogId);
+    return NextResponse.json({ result: data, success: true });
 }
+
 
