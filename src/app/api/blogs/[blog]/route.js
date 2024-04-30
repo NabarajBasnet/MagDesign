@@ -17,7 +17,7 @@ export const GET = async(req, content)=>
 export const PUT = async(req, content)=>
 {
     const payload = await req.json();
-    console.log('Payload: ',payload)
+    console.log('Payload: ',payload);
     await mongoose.connect(connectionStr);
     const blogId = content.params.blog;
     const filter = {_id: blogId};
@@ -27,5 +27,9 @@ export const PUT = async(req, content)=>
 
 export const DELETE = async(req, content)=>
 {
-    
+    const blogId = content.params.blog;
+    await mongoose.connect(connectionStr);
+    const deletedPost = await BlogPost.findOneAndDelete(blogId)
+    return NextResponse.json({result: deletedPost, success: true})
 }
+
