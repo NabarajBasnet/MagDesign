@@ -62,19 +62,19 @@ export default function Home() {
                     {blogposts.map((blog, _id) =>
                     (
                       <Link href={'/'} key={_id}>
-                        <div className="flex flex-col items-center border m-4 rounded-xl shadow-xl">
+                        <div className="flex p-5 flex-col items-center border m-4 rounded-xl shadow-2xl">
                           <div>
-                            <img src={blog.imageurl} width={latestBlog.imagewidth/25} height={latestBlog.imageheight/25} alt="Blog Image" className="rounded-full" />
+                            <img src={blog.imageurl} width={latestBlog.imagewidth/5} height={latestBlog.imageheight/5} alt="Blog Image" className="rounded-xl shadow-2xl mt-5 mb-5" />
                           </div>
                           <div>
                             <div>
-                              <p className="font-bold"><span>{blog.category}</span>,<span>{blog.subCategory} - <span className="text-gray-600">{blog.date}</span></span></p>
+                              <p className="font-bold mb-5"><span>{blog.category}</span>,<span>{blog.subCategory} - <span className="text-gray-600">{blog.date}</span></span></p>
                             </div>
                             <div>
-                              <h2 className="font-bold text-2xl">{blog.title}</h2>
+                              <h2 className="font-bold text-3xl mb-5">{blog.title}</h2>
                             </div>
                             <div>
-                              <h2 className="font-bold text-gray-500">{blog.introduction}</h2>
+                              <h2 className="font-bold text-gray-600 mb-5">{blog.introduction}</h2>
                             </div>
                             <div className="flex flex-row items-center">
                               <div>
@@ -82,7 +82,7 @@ export default function Home() {
                               </div>
                               <div>
                                 <h2 className="font-bold">{latestBlog.author}</h2>
-                                <p className="text-gray-400 font-bold">CEO and Founder</p>
+                                <p className="text-gray-500 font-bold">CEO and Founder</p>
                               </div>
                             </div>
                           </div>
