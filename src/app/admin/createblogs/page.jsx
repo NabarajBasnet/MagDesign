@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 
-const CreateBlogs = () => {
+const CreateBlogs = () => 
+{
     const [title, setTitle] = useState('')
     const [introduction, setIntroduction] = useState('')
     const [category, setCategory] = useState('')
     const [subCategory, setSubCategory] = useState('')
     const [bodycontent, setBodyContent] = useState('')
-    // const [graphics, setGraphics] = useState('')
+    const [image, setImage] = useState('')
     const [links, setLinks] = useState('')
     const [author, setAuthor] = useState('')
     const [date, setDate] = useState('')
@@ -23,28 +24,62 @@ const CreateBlogs = () => {
             setCategory(""),
             setSubCategory(''),
             setBodyContent(''),
-            // setGraphics(''),
+            setImage(''),
             setLinks(''),
             setAuthor(''),
             setDate(''),
             setMentionedPoples('')
     }
 
-    const CreateBlogPost = async (e) => {
+    const CreateBlogPost = async (e) =>
+    {
         e.preventDefault()
-        const req = await fetch('http://localhost:3000/api/blogs', {
-            method: "POST",
-            body: JSON.stringify({
-                title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples
-            })
-        });
+        try {
+            const req = await fetch('http://localhost:3000/api/blogs', {
+                method: "POST",
+                body: JSON.stringify({
+                    title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples
+                })
+            });
 
-        setTimeout(() => {
-            setPostCreated(false)
-        }, 1500)
-        setPostCreated(req.ok)
+            if (req.ok) {
+                setPostCreated(true);
+                // Clear fields after successfull request
+                setTimeout(() => {
+                    setPostCreated(false)
+                    clearFields()
+                }, 1500)
+            }
+        }
+        catch (error) {
+            alert(error)
+        }
+    }
 
-        clearFields()
+    // Post Image to cloudinary and return image url
+    let cloud_object = {
+        CLOUD_NAME: 'dhur2ubp8',
+        API_KEY: '414511992419123',
+        API_SECRET: 'oigXwOx-X-ziEtvbMDo55k2QGnY',
+        API_ENV: 'CLOUDINARY_URL=cloudinary://414511992419123:oigXwOx-X-ziEtvbMDo55k2QGnY@dhur2ubp8'
+    };
+
+    const handleUploadImage = async(type)=>
+    {
+        const data = new FormData();
+        data.append('file', type==='image'?'image':null);
+        data.append('upload_preset', type==='image'?'ifps_preset':'ifps_preset')
+        
+        // Resource Type
+        const resourceType = type==='image'?'image':null;
+        const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`,
+        {
+            method:'POST',
+            body:data
+        })
+        const result = await req.json();
+        console.log('Req: ',req)
+    
     }
 
 
@@ -61,6 +96,19 @@ const CreateBlogs = () => {
                                 placeholder="Title..."
                                 className="outline-none border mt-2 rounded-lg p-3 md:w-full sm:w-full lg:w-1/2 border-gray-400 placeholder:text-gray-600"
                             />
+
+                            <div className=" md:w-full lg:w-1/2 sm:w-full mt-2 flex flex-row items-center justify-between border p-1 rounded-lg border-gray-400">
+                                <input 
+                                type="file"
+                                onChange={(e)=>setImage(e.target.files?.[0])}
+                                name="file"
+                                className="w-full outline-none border-none"
+                                />
+                                <button className="bg-green-500 w-44 h-10 text-white font-bold rounded-lg">Upload Image</button>
+                            </div>
+
+
+
                             <input
                                 value={introduction}
                                 onChange={(e) => setIntroduction(e.target.value)}
