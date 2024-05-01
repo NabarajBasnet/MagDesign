@@ -1,5 +1,6 @@
 'use client'
 
+
 import { useState } from "react";
 
 const CreateBlogs = () => 
@@ -14,21 +15,23 @@ const CreateBlogs = () =>
     const [author, setAuthor] = useState('')
     const [date, setDate] = useState('')
     const [mentionedpeoples, setMentionedPoples] = useState('')
-
+    const [imageurl, setImageUrl] = useState('');
+    const [imagewidth, setImageWidth] = useState(0)
+    const [imageheight, setImageHeight] = useState(0)
     const [postcreated, setPostCreated] = useState(false)
+    const [imageUploading, setImageUploading] = useState(false)
 
+    const blogPostObj = {
+        title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples,imageurl, imagewidth, imageheight
+    }
+    console.log('Blog Post: ', blogPostObj);
+
+    console.log("imageurl",imageurl)
+    console.log("Image Width",imagewidth)
+    console.log("Image Height",imageheight)
 
     const clearFields = () => {
-        setTitle(''),
-            setIntroduction(''),
-            setCategory(""),
-            setSubCategory(''),
-            setBodyContent(''),
-            setImage(''),
-            setLinks(''),
-            setAuthor(''),
-            setDate(''),
-            setMentionedPoples('')
+        setTitle(''), setIntroduction(''), setCategory(""), setSubCategory(''), setBodyContent(''), setImage(''), setLinks(''), setAuthor(''), setDate(''), setMentionedPoples('')
     }
 
     const CreateBlogPost = async (e) =>
@@ -38,7 +41,7 @@ const CreateBlogs = () =>
             const req = await fetch('http://localhost:3000/api/blogs', {
                 method: "POST",
                 body: JSON.stringify({
-                    title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples
+                    title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples,imageurl, imagewidth, imageheight
                 })
             });
 
@@ -67,19 +70,27 @@ const CreateBlogs = () =>
     const handleUploadImage = async(type)=>
     {
         const data = new FormData();
-        data.append('file', type==='image'?'image':null);
-        data.append('upload_preset', type==='image'?'ifps_preset':'ifps_preset')
-        
+        data.append('file', type==='image'?image:null);
+        data.append('upload_preset', type==='image'?'ifps_preset':'ifps_preset');
+        console.log('Data: ',data);
         // Resource Type
         const resourceType = type==='image'?'image':null;
-        const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`,
-        {
-            method:'POST',
+        const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`,{
+            method:"POST",
             body:data
         })
+
         const result = await req.json();
-        console.log('Req: ',req)
-    
+        console.log(result);
+        setImageUrl(result.secure_url)
+        setImageWidth(result.width)
+        setImageHeight(result.height)
+    }
+
+    const mainImageUploader = (e)=>
+    {
+        e.preventDefault();
+        handleUploadImage('image')
     }
 
 
@@ -104,7 +115,7 @@ const CreateBlogs = () =>
                                 name="file"
                                 className="w-full outline-none border-none"
                                 />
-                                <button className="bg-green-500 w-44 h-10 text-white font-bold rounded-lg">Upload Image</button>
+                                <button onClick={(e)=>mainImageUploader(e)} className="bg-green-500 w-44 h-10 text-white font-bold rounded-lg">Upload Image</button>
                             </div>
 
 

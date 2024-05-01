@@ -10,7 +10,9 @@ const EditBlog = (props) => {
     const [category, setCategory] = useState('')
     const [subCategory, setSubCategory] = useState('')
     const [bodycontent, setBodyContent] = useState('')
-    // const [graphics, setGraphics] = useState('')
+    const [imageurl, setImageUrl] = useState('')
+    const [imagewidth, setImageWidth] = useState('')
+    const [imageheight, setImageHeight] = useState('')
     const [links, setLinks] = useState('')
     const [author, setAuthor] = useState('')
     const [date, setDate] = useState('')
@@ -34,6 +36,9 @@ const EditBlog = (props) => {
             setAuthor(res.result[0].author);
             setDate(res.result[0].date);
             setMentionedPoples(res.result[0].mentionedpeoples);
+            setImageUrl(res.result[0].imageurl)
+            setImageWidth(res.result[0].imagewidth)
+            setImageHeight(res.result[0].imageheight)
         }
         catch (error) {
             console.log(error)
@@ -68,7 +73,7 @@ const EditBlog = (props) => {
 
     return (
         <>
-            <div className="flex flex-col justify-center items-center h-screen">
+            <div className="flex flex-col justify-center items-center h-full">
                 {blogUpdated ? (
                     <div className="shadow-md border border-gray-500 rounded-md p-8 bg-green-200 text-blak font-bold font-sans">
                         <p>Blog Updated Successfully!</p>
@@ -142,7 +147,10 @@ const EditBlog = (props) => {
                         <button onClick={(e) => updateBlogDetails(e)} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Update Blog
                         </button>
+                    </div>
 
+                    <div className="flex flex-row justify-center mt-10">
+                        <img src={imageurl} width={imagewidth/8} height={imageheight/8}/>
                     </div>
                 </form>
             </div>

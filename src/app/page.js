@@ -32,7 +32,7 @@ export default function Home() {
             <>
               <div className=" flex md:flex-col sm:flex-col lg:flex-row w-full h-1/2 mb-64 md:justify-center lg:justify-center mt-14">
                 <div className="m-4 lg:w-1/2 lg:h-1/2 md:w-full sm:w-full md:p-10 sm:p-10">
-                  <img src="" alt="Blog Image" className="w-full border h-full" />
+                  <img src={latestBlog.imageurl} alt="Blog Image" width={latestBlog.imagewidth/3} height={latestBlog.imageheight/3} className=" border" />
                 </div>
                 <div className=" m-4 lg:w-1/2 lg:h-1/2 md:w-full sm:w-full md:p-10 sm:p-10">
                   <div>
@@ -46,7 +46,7 @@ export default function Home() {
                   </div>
                   <div className="flex flex-row items-center mt-5">
                     <div>
-                      <img src="" alt="User Image" />
+                      <img src={latestBlog.imageurl} width={50} height={50} className="rounded-full" alt="User Image" />
                     </div>
                     <div className="flex flex-col">
                       <h2 className="font-bold">{latestBlog.author}</h2>
@@ -64,7 +64,7 @@ export default function Home() {
                       <Link href={'/'} key={_id}>
                         <div className="flex flex-col items-center border m-4 rounded-xl shadow-xl">
                           <div>
-                            <img src="" alt="Blog Image" className="w-40 h-60" />
+                            <img src={blog.imageurl} width={latestBlog.imagewidth/25} height={latestBlog.imageheight/25} alt="Blog Image" className="rounded-full" />
                           </div>
                           <div>
                             <div>
@@ -78,7 +78,7 @@ export default function Home() {
                             </div>
                             <div className="flex flex-row items-center">
                               <div>
-                                <img src="" alt="User Image" />
+                                <img src={latestBlog.imageurl} className="rounded-full mr-5" width={50} height={50} alt="User Image" />
                               </div>
                               <div>
                                 <h2 className="font-bold">{latestBlog.author}</h2>
