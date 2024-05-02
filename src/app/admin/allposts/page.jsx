@@ -29,12 +29,12 @@ const AllPosts = () => {
                             (
                                 <>
                                     <div className="flex flex-row items-start  shadow-xl rounded-2xl lg:m-3 w-110 h-full mt-10" key={_id}>
-                                        <div className="flex flex-row items-center mt-10">
+                                        <div className="flex lg:flex-row md:flex-row sm:flex-col items-center mt-10">
                                             <div>
-                                                <img src={blog.imageurl} alt="Blog Image" className="bg-gray-600 border-gray-500 md:w-44 md:h-44 sm:h-28 sm:w-28 lg:w-64 lg:h-64  border rounded-2xl mr-4" />
+                                                <img src={blog.imageurl} alt="Blog Image" className="bg-gray-600 border-gray-500 md:w-44 lg:ml-2 md:h-38 sm:h-40 sm:w-64 lg:w-96 lg:h-64  border rounded-2xl mr-4 sm:mb-10" />
                                             </div>
 
-                                            <div>
+                                            <div className="lg:ml-3">
                                                 <Link href={`/admin/allposts/${blog._id}`}>
                                                     <div className="flex flex-row">
                                                         <p className="font-bold">{blog.category},{blog.subCategory}</p>
@@ -53,7 +53,7 @@ const AllPosts = () => {
                                                 <div className="flex mt-4 flex-col items-center">
                                                     <div className="flex flex-row items-center">
                                                         <div>
-                                                            <img src={blog.imageurl} className="rounded-full mr-5" width={50} height={50} alt="User Image" />
+                                                            <img src={blog.imageurl} className="rounded-full mr-5 sm:w-16 sm:h-16" alt="User Image" />
                                                         </div>
                                                         <div>
                                                             <p>{blog.author}</p>

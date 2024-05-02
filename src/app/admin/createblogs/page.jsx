@@ -3,8 +3,7 @@
 
 import { useState } from "react";
 
-const CreateBlogs = () => 
-{
+const CreateBlogs = () => {
     const [title, setTitle] = useState('')
     const [introduction, setIntroduction] = useState('')
     const [category, setCategory] = useState('')
@@ -22,26 +21,25 @@ const CreateBlogs = () =>
     const [imageUploading, setImageUploading] = useState(false)
 
     const blogPostObj = {
-        title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples,imageurl, imagewidth, imageheight
+        title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples, imageurl, imagewidth, imageheight
     }
     console.log('Blog Post: ', blogPostObj);
 
-    console.log("imageurl",imageurl)
-    console.log("Image Width",imagewidth)
-    console.log("Image Height",imageheight)
+    console.log("imageurl", imageurl)
+    console.log("Image Width", imagewidth)
+    console.log("Image Height", imageheight)
 
     const clearFields = () => {
         setTitle(''), setIntroduction(''), setCategory(""), setSubCategory(''), setBodyContent(''), setImage(''), setLinks(''), setAuthor(''), setDate(''), setMentionedPoples('')
     }
 
-    const CreateBlogPost = async (e) =>
-    {
+    const CreateBlogPost = async (e) => {
         e.preventDefault()
         try {
             const req = await fetch('http://localhost:3000/api/blogs', {
                 method: "POST",
                 body: JSON.stringify({
-                    title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples,imageurl, imagewidth, imageheight
+                    title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples, imageurl, imagewidth, imageheight
                 })
             });
 
@@ -67,17 +65,16 @@ const CreateBlogs = () =>
         API_ENV: 'CLOUDINARY_URL=cloudinary://414511992419123:oigXwOx-X-ziEtvbMDo55k2QGnY@dhur2ubp8'
     };
 
-    const handleUploadImage = async(type)=>
-    {
+    const handleUploadImage = async (type) => {
         const data = new FormData();
-        data.append('file', type==='image'?image:null);
-        data.append('upload_preset', type==='image'?'ifps_preset':'ifps_preset');
-        console.log('Data: ',data);
+        data.append('file', type === 'image' ? image : null);
+        data.append('upload_preset', type === 'image' ? 'ifps_preset' : 'ifps_preset');
+        console.log('Data: ', data);
         // Resource Type
-        const resourceType = type==='image'?'image':null;
-        const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`,{
-            method:"POST",
-            body:data
+        const resourceType = type === 'image' ? 'image' : null;
+        const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`, {
+            method: "POST",
+            body: data
         })
 
         const result = await req.json();
@@ -87,8 +84,7 @@ const CreateBlogs = () =>
         setImageHeight(result.height)
     }
 
-    const mainImageUploader = (e)=>
-    {
+    const mainImageUploader = (e) => {
         e.preventDefault();
         handleUploadImage('image')
     }
@@ -109,13 +105,13 @@ const CreateBlogs = () =>
                             />
 
                             <div className=" md:w-full lg:w-1/2 sm:w-full mt-2 flex flex-row items-center justify-between border p-1 rounded-lg border-gray-400">
-                                <input 
-                                type="file"
-                                onChange={(e)=>setImage(e.target.files?.[0])}
-                                name="file"
-                                className="w-full outline-none border-none"
+                                <input
+                                    type="file"
+                                    onChange={(e) => setImage(e.target.files?.[0])}
+                                    name="file"
+                                    className="w-full outline-none border-none"
                                 />
-                                <button onClick={(e)=>mainImageUploader(e)} className="bg-green-500 w-44 h-10 text-white font-bold rounded-lg">Upload Image</button>
+                                <button onClick={(e) => mainImageUploader(e)} className="bg-green-500 w-44 h-10 text-white font-bold rounded-lg">Upload Image</button>
                             </div>
 
 
