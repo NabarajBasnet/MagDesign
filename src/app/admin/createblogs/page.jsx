@@ -23,11 +23,7 @@ const CreateBlogs = () => {
     const blogPostObj = {
         title, introduction, category, subCategory, bodycontent, links, author, date, mentionedpeoples, imageurl, imagewidth, imageheight
     }
-    console.log('Blog Post: ', blogPostObj);
 
-    console.log("imageurl", imageurl)
-    console.log("Image Width", imagewidth)
-    console.log("Image Height", imageheight)
 
     const clearFields = () => {
         setTitle(''), setIntroduction(''), setCategory(""), setSubCategory(''), setBodyContent(''), setImage(''), setLinks(''), setAuthor(''), setDate(''), setMentionedPoples('')
@@ -69,7 +65,6 @@ const CreateBlogs = () => {
         const data = new FormData();
         data.append('file', type === 'image' ? image : null);
         data.append('upload_preset', type === 'image' ? 'ifps_preset' : 'ifps_preset');
-        console.log('Data: ', data);
         // Resource Type
         const resourceType = type === 'image' ? 'image' : null;
         const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`, {
@@ -78,7 +73,6 @@ const CreateBlogs = () => {
         })
 
         const result = await req.json();
-        console.log(result);
         setImageUrl(result.secure_url)
         setImageWidth(result.width)
         setImageHeight(result.height)
@@ -175,7 +169,7 @@ const CreateBlogs = () => {
 
                             <button
                                 onClick={(e) => CreateBlogPost(e)}
-                                className="outline-none border bg-green-400 text-black font-bold rounded-lg mt-10 p-2 lg:w-1/5 sm:w-32 md:w-40"
+                                className="outline-none border bg-green-500 text-white font-bold rounded-lg mt-10 p-2 lg:w-1/5 sm:w-32 md:w-40"
                             >
                                 Create Blog
                             </button>

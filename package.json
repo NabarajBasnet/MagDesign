@@ -12,6 +12,7 @@
     "@tiptap/pm": "^2.3.0",
     "@tiptap/react": "^2.3.0",
     "@tiptap/starter-kit": "^2.3.0",
+    "axios": "^1.6.8",
     "cloudinary": "^2.2.0",
     "mongoose": "^8.3.2",
     "next": "^14.3.0-canary.33",

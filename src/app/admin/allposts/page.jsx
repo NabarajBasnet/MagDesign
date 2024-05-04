@@ -9,9 +9,15 @@ const AllPosts = () => {
     const [blogpostsadmin, setBlogPostsAdmin] = useState([]);
 
     const getAllPostsAdmin = async () => {
-        const req = await fetch('http://localhost:3000/api/blogs');
-        const res = await req.json();
-        setBlogPostsAdmin(res.result);
+        try {
+            const req = await fetch('http://localhost:3000/api/blogs');
+            const res = await req.json();
+            setBlogPostsAdmin(res.result);
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     };
 
     useEffect(() => {

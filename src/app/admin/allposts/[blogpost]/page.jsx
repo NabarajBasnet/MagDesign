@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const EditBlog = (props) => {
+
     const blogId = props.params.blogpost;
 
     const [title, setTitle] = useState('')
@@ -90,25 +91,26 @@ const EditBlog = (props) => {
 
         const resourceType = type === 'image' ? 'image' : 'video'
 
-        const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`, {
-            method: 'POST',
-            body: data
-        })
-        const result = await req.json();
-        window.alert('Image Changed Successfully!')
-        setImageUrl(result.secure_url)
-        setImageWidth(result.width)
-        setImageHeight(result.height)
-
-
+        try {
+            const req = await fetch(`https://api.cloudinary.com/v1_1/${cloud_object.CLOUD_NAME}/${resourceType}/upload`, {
+                method: 'POST',
+                body: data
+            })
+            const result = await req.json();
+            window.alert('Image Changed Successfully!')
+            setImageUrl(result.secure_url)
+            setImageWidth(result.width)
+            setImageHeight(result.height)
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
     const mainImageUpdater = (e) => {
         e.preventDefault();
         updateBlogImage('image');
     }
-
-
 
     return (
         <>

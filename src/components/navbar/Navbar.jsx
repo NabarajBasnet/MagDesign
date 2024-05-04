@@ -1,15 +1,12 @@
 'use client'
 
 import Link from "next/link";
-import { useState } from "react";
 import SideNavbar from "./SideNavbar";
 import { useDispatch, useSelector } from "react-redux";
 import { SideNavbarState } from "../redux/action";
 
 
 const Navbar = () => {
-    // States
-    const [navsidebar, setNavsidebar] = useState(false);
 
     // Redux
     const navsidebarState = useSelector(state => state.SideNavbarState)

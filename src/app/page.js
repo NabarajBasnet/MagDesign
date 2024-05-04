@@ -12,9 +12,14 @@ export default function Home() {
 
 
   const fetchAllBlogPosts = async () => {
-    const req = await fetch('http://localhost:3000/api/blogs');
-    const res = await req.json();
-    setBlogPosts(res.result)
+    try {
+      const req = await fetch('http://localhost:3000/api/blogs');
+      const res = await req.json();
+      setBlogPosts(res.result)
+    }
+    catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {
@@ -64,7 +69,7 @@ export default function Home() {
                   <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
                     {blogposts.map((blog, _id) =>
                     (
-                      <Link href={'/'} key={_id}>
+                      <Link href={`/blogs/${blog._id}`} key={_id}>
                         <div className="flex p-5 flex-col items-center border m-4 rounded-xl shadow-2xl">
                           <div>
                             <img src={blog.imageurl} width={400} height={400} alt="Blog Image" className="rounded-xl shadow-2xl mt-5 mb-5" />
