@@ -3,18 +3,31 @@
 import Link from "next/link";
 import SideNavbar from "./SideNavbar";
 import { useDispatch, useSelector } from "react-redux";
-import { SideNavbarState } from "../redux/action";
+import { SideNavbarState, SearchedQueryAction } from "../redux/action";
+import { useEffect, useState } from "react";
 
 
 const Navbar = () => {
 
+    const [searchQuery, setSearchQuery] = useState('');
+
+
     // Redux
-    const navsidebarState = useSelector(state => state.SideNavbarState)
+    const navsidebarState = useSelector(state => state.SideNavbarState);
+    const searchedQueryWordReducer = useSelector(state => state.searchedQueryWord);
     const dispatch = useDispatch()
 
     const DispatchnavsidebarState = () => {
         dispatch(SideNavbarState(!navsidebarState))
-    }
+    };
+
+    const DispatchSearchedQueryAction = () => {
+        dispatch(SearchedQueryAction(searchQuery))
+    };
+
+    useEffect(() => {
+        DispatchSearchedQueryAction()
+    }, [searchQuery]);
 
 
     return (
@@ -29,7 +42,7 @@ const Navbar = () => {
                         <div>
                             <div className="flex md:hidden sm:hidden lg:flex lg:flex-row items-center p-2 border w-full border-gray-400 rounded-3xl">
                                 <img src="/icons/searchicon.png" className="w-6 cursor-pointer" />
-                                <input type="text" placeholder="Search..." className="outline-none border-none lg:w-80 md:w-40 sm:w-20 bg-transparent " />
+                                <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search..." className="outline-none border-none lg:w-80 md:w-40 sm:w-20 bg-transparent " />
                             </div>
                         </div>
 
@@ -64,7 +77,7 @@ const Navbar = () => {
                         <div>
                             <div className="flex md:flex sm:flex lg:hidden lg:flex-row items-center md:mt-10 sm:mt-6 p-2 border w-full border-gray-400 rounded-3xl">
                                 <img src="/icons/searchicon.png" className="w-6 cursor-pointer" />
-                                <input type="text" placeholder="Search..." className="outline-none border-none lg:w-80 md:w-80 sm:w-80 bg-transparent " />
+                                <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search..." className="outline-none border-none lg:w-80 md:w-80 sm:w-80 bg-transparent " />
                             </div>
                         </div>
 

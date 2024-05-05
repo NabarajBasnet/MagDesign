@@ -1,11 +1,73 @@
 'use client'
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
-const Blogs = ()=>
-{
-    return(
+
+
+const Blogs = () => {
+    const [blogs, setBlogs] = useState([]);
+
+    const searchedQueryWord = useSelector(state => state.searchedQueryWord);
+
+    const getAllBlogs = async () => {
+        try {
+            const req = await fetch('http://localhost:3000/api/blogs/');
+            const res = await req.json();
+            setBlogs(res.result);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        getAllBlogs();
+    }, []);
+
+    return (
         <>
-        <h1>Blogs</h1>
+            <div className="w-full">
+
+                <div className="flex justify-center items-center w-full">
+                    {blogs.length >= 1 ? (
+                        <>
+                            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 items-center justify-center w-full">
+                                {blogs.filter((blog) => {
+                                    const nameMatch = searchedQueryWord === '' || blog.title.toLowerCase().includes(searchedQueryWord.toLowerCase());
+                                    return nameMatch;
+                                }).map((blog) => (
+                                    <>
+                                        <div className="flex flex-col shadow-lg hover:scale-105 hover:transition-all transition-all hover:shadow-2xl rounded-xl m-5 p-4 items-center justify-center mt-5" key={blog._id}>
+                                            <Link href={`/blogs/${blog._id}`} key={blog._id}>
+                                                <div>
+                                                    <img src={blog.imageurl} className="w-80 h-52 rounded-lg" alt="Blog Image" />
+                                                </div>
+                                                <div className="p-5">
+                                                    <p> <span className="text-gray-600 font-bold mt-5 text-lg">{blog.category}, </span> <span className="text-gray-600 font-bold text-lg">{blog.subCategory} </span>- <span className="text-gray-500 font-bold text-lg">{blog.date} </span></p>
+                                                    <h1 className="text-2xl font-bold mt-5 ">{blog.title}</h1>
+                                                    <p className="mt-5 text-gray-500">{blog.introduction}</p>
+                                                </div>
+                                                <div className="flex flex-row justify-center mt-4 items-center">
+                                                    <div className="mr-4">
+                                                        <img src={blog.imageurl} className="w-16 h-16 shadow-lg rounded-full" alt="User Image" />
+                                                    </div>
+                                                    <div>
+                                                        <h1 className="text-gray-500 font-bold">{blog.author}</h1>
+                                                        <p>CEO & Founder</p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    </>
+                                ))}
+                            </div>
+                        </>
+                    ) : ('')}
+                </div>
+
+            </div>
         </>
     )
 }

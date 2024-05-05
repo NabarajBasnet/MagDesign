@@ -1,25 +1,31 @@
 
 
 const initialState = {
-    SideNavbarState:false,
-    adminSidebar:true,
+    SideNavbarState: false,
+    adminSidebar: true,
+    searchedQueryWord: ''
 }
 
-const reducer = (state=initialState, action)=>
-{
-    switch(action.type)
-    {
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
         case 'OPEN_SIDENAVBAR':
-            return{
+            return {
                 ...state,
-                SideNavbarState:!state.SideNavbarState
-            }   
+                SideNavbarState: !state.SideNavbarState
+            }
 
         case 'OPEN_ADMIN_SIDEBAR':
+            return {
+                ...state,
+                adminSidebar: !state.adminSidebar
+            }
+        
+        case 'SEARCH_QUERY':
             return{
                 ...state,
-                adminSidebar:!state.adminSidebar
+                searchedQueryWord: action.payload
             }
+
 
         default:
             return state;

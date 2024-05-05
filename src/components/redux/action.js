@@ -9,3 +9,8 @@ export const AdminSidebarState = (adminSidebar)=>({
     payload:adminSidebar
 })
 
+export const SearchedQueryAction = (searchedQuery)=>({
+    type:'SEARCH_QUERY',
+    payload:searchedQuery
+})
+
