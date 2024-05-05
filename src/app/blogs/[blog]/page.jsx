@@ -85,8 +85,33 @@ const SingleBlogPost = (props) => {
                     )}
 
                     {/* Related Blogs */}
-
-
+{/* 
+                    <div className="flex justify-center items-start lg:w-full">
+                            <div className="flex flex-col items-center mt-16 justify-start w-full">
+                                <div>
+                                    <h1 className="text-4xl font-bold">Related</h1>
+                                </div>
+                                <div className="flex lg:flex-row md:flex-col sm:flex-col items-center shadow-xl p-8 justify-center w-full m-8">
+                                    <div className=" text-white flex flex-row items-center pl-10 pr-10 sm:w-full md:w-full lg:w-1/3">
+                                        <img src={blog.imageurl} className="w-full rounded-lg" />
+                                    </div>
+                                    <div className="flex flex-col items-start justify-center pl-10 pr-10 h-64 w-full">
+                                        <h1> <span className="text-xl font-bold">{blog.category}</span>, <span className="text-xl font-bold">{blog.subCategory}</span>- <span className="text-lg text-gray-500 font-bold">{blog.date}</span> </h1>
+                                        <h1 className="text-3xl font-bold mt-4">{blog.title}</h1>
+                                        <p className="text-gray-500 font-semibold mt-4">{blog.introduction}</p>
+                                        <div className="flex flex-row items-center mt-4">
+                                            <div className="mr-4">
+                                                <img src={blog.imageurl} className="w-16 h-16 rounded-full" />
+                                            </div>
+                                            <div>
+                                                <h1>{blog.author}</h1>
+                                                <p>{blog.date}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> */}
 
                     <div className="flex flex-col justify-around items-center">
                         <form className="flex lg:flex-row md:flex-row sm:flex-col w-full h-full items-center justify-around p-6">
