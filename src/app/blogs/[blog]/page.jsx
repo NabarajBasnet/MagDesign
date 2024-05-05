@@ -8,14 +8,18 @@ import Link from "next/link";
 const SingleBlogPost = (props) => {
 
     const [blog, setBlog] = useState(null);
-
+    const [allBlogs, setAllBlogs] = useState([]);
+    const [relatedBlog, setRelatedBlog] = useState('');
+    console.log('Related Blogs: ',relatedBlog)
     const SingleblogId = props.params.blog;
+
 
     const getSingleBlogDetails = async () => {
         try {
             const req = await fetch(`http://localhost:3000/api/blogs/${SingleblogId}`);
             const res = await req.json();
             setBlog(res.result[0]);
+            setRelatedBlog(res.result[0].title);
         }
         catch (error) {
             console.log(error);
@@ -26,10 +30,25 @@ const SingleBlogPost = (props) => {
         getSingleBlogDetails()
     }, []);
 
+    const getAllBlogs = async () => {
+        try {
+            const req = await fetch(`http://localhost:3000/api/blogs/`);
+            const res = await req.json();
+            setAllBlogs(res.result)
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    useEffect(() => {
+        getAllBlogs();
+    }, [])
+
+
     return (
         <>
             <div>
-                <div>
+                <div className="w-full">
                     {blog && (
                         <>
                             <div className="flex flex-col justify-center items-center mt-10">
@@ -42,8 +61,8 @@ const SingleBlogPost = (props) => {
                                     <div className="flex flex-col justify-center items-center">
                                         <h1 className="text-5xl md:w-full lg:w-1/2 font-bold md:p-8">{blog.title}</h1>
                                         <p className="text-xl font-serif font-bold text-gray-400 md:w-full lg:w-1/2 mt-5">{blog.introduction}</p>
-                                        <img src={blog.imageurl} className="md:w-full md:p-4 lg:w-1/2 mt-12 rounded-lg shadow-lg" alt="Image" />
-                                        <p className="font-bold font-sans text-gray-500 md:p-4 text-2xl md:w-full lg:w-1/2 mt-10">{blog.bodycontent}</p>
+                                        <img src={blog.imageurl} className="sm:p-3 sm:rounded-lg md:w-full md:p-4 lg:w-1/2 mt-12 rounded-lg shadow-lg" alt="Image" />
+                                        <p className="font-bold font-sans text-gray-500 md:p-4 sm:p-6 text-2xl md:w-full lg:w-1/2 mt-10">{blog.bodycontent}</p>
                                     </div>
                                 </div>
 
@@ -65,19 +84,9 @@ const SingleBlogPost = (props) => {
                         </>
                     )}
 
+                    {/* Related Blogs */}
 
-                    <div className="flex flex-col items-center">
-                        <h1>Related</h1>
-                        <div className="bg-black text-white  pl-10 pr-10 w-1/2">
-                            <h1>Hello</h1>
-                            <h1>Hello</h1>
-                            <h1>Hello</h1>
-                            <h1>Hello</h1>
-                            <h1>Hello</h1>
-                            <h1>Hello</h1>
-                            <h1>Hello</h1>
-                        </div>
-                    </div>
+
 
                     <div className="flex flex-col justify-around items-center">
                         <form className="flex lg:flex-row md:flex-row sm:flex-col w-full h-full items-center justify-around p-6">
@@ -103,7 +112,7 @@ const SingleBlogPost = (props) => {
 
                             <div className="p-6">
                                 <div className="flex flex-row items-start justify-start">
-                                    <textarea type="text" placeholder="Your Comment" className="flex flex-col items-start justify-start border h-64  border-gray-400 p-2 rounded-lg"/>
+                                    <textarea type="text" placeholder="Your Comment" className="flex flex-col items-start justify-start border h-64  border-gray-400 p-2 rounded-lg" />
                                 </div>
                             </div>
 

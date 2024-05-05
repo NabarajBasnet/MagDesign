@@ -8,7 +8,6 @@ export const GET = async (req, content) => {
         await mongoose.connect(connectionStr);
         const blogId = content.params.blog;
         const filter = { _id: blogId };
-        console.log(filter);
         const blog = await BlogPost.find(filter);
         return NextResponse.json({ result: blog });
 
@@ -22,7 +21,6 @@ export const GET = async (req, content) => {
 export const PUT = async (req, content) => {
     try {
         const payload = await req.json();
-        console.log('Payload: ', payload);
         await mongoose.connect(connectionStr);
         const blogId = content.params.blog;
         const filter = { _id: blogId };
@@ -39,7 +37,6 @@ export const PUT = async (req, content) => {
 
 export const DELETE = async (req, content) => {
     try {
-
         await mongoose.connect(connectionStr);
         const blogId = content.params.blog;
         const data = await BlogPost.findByIdAndDelete(blogId);

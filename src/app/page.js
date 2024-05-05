@@ -34,35 +34,33 @@ export default function Home() {
           <h1 className="text-5xl font-bold">Latest</h1>
           {latestBlog && (
             <>
-              <div className=" flex md:flex-col sm:flex-col lg:flex-row w-full h-1/2 mb-64 md:justify-center lg:justify-center mt-14">
-                <Link href={`/blogs/${latestBlog._id}`} className="w-full">
-                  <div className="m-4 md:p-10 sm:p-10 lg:w-full">
-                    <img src={latestBlog.imageurl} alt="Blog Image" className="lg:w-3/4 rounded-2xl shadow-2xl border" />
+
+              <div className="w-full flex flex-row items-center justify-center">
+                <Link href={`/blogs/${latestBlog._id}`}>
+                  <div className="p-10">
+                    <img src={latestBlog.imageurl} alt="Blog Image" className="rounded-xl" />
                   </div>
                 </Link>
-                <div className=" m-4 lg:w-1/2 lg:h-1/2 md:w-full sm:w-full md:p-10 sm:p-10">
-                  <div>
-                    <h2 className="flex flex-row"><span className="font-bold text-black">{latestBlog.category}, {latestBlog.subCategory}</span> - <span className="font-bold text-gray-500">{latestBlog.date}</span></h2>
-                  </div>
-                  <div className="mt-5">
-                    <Link href={`/blogs/${latestBlog._id}`} className="w-full">
-                      <h1 className="font-bold text-5xl">{latestBlog.title}</h1>
-                    </Link>
-                  </div>
-                  <div className="mt-5">
-                    <h3 className="font-bold text-gray-500">{latestBlog.introduction}</h3>
-                  </div>
-                  <div className="flex flex-row items-center mt-5 w-60  shadow-lg p-2 rounded-full">
-                    <div>
-                      <img src={latestBlog.imageurl} className="rounded-full w-16 h-16 mr-5" alt="User Image" />
-                    </div>
-                    <div className="flex flex-col">
-                      <h2 className="font-bold">{latestBlog.author}</h2>
-                      <p className="text-gray-400 font-bold">CEO and Founder</p>
+
+                <Link href={`/blogs/${latestBlog._id}`}>
+                  <div className="p-10">
+                    <h1> <span className="text-lg font-bold text-gray-700">{latestBlog.category}</span>, <span className="text-lg font-bold text-gray-700">{latestBlog.subCategory}</span> - <span className="text-md font-bold text-gray-600">{latestBlog.date}</span> </h1>
+                    <h1 className="text-4xl font-bold mt-2">{latestBlog.title}</h1>
+                    <p className="text-gray-500 font-semibold mt-5">{latestBlog.introduction}</p>
+
+                    <div className="flex flex-row items-center mt-5">
+                      <div className="mr-4">
+                        <img src={latestBlog.imageurl} className="w-16 h-16 rounded-full" />
+                      </div>
+                      <div>
+                        <h1 className="text-lg font-bold">{latestBlog.author}</h1>
+                        <p className="text-gray-500 font-bold">CEO & Founder</p>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
+
 
               <div className="flex flex-row w-full">
                 {blogposts && (
