@@ -54,7 +54,7 @@ export default function Home() {
     <>
       <div className="flex w-full">
         <div className="flex flex-col w-full justify-center items-center mt-14">
-          <h1 className="text-5xl font-bold">Latest</h1>
+          <h1 className="text-7xl font-bold">Latest</h1>
           {latestBlog && (
             <>
 
@@ -68,8 +68,8 @@ export default function Home() {
                 <Link href={`/blogs/${latestBlog._id}`}>
                   <div className="p-10">
                     <h1> <span className="text-lg font-bold text-gray-700">{latestBlog.category}</span>, <span className="text-lg font-bold text-gray-700">{latestBlog.subCategory}</span> - <span className="text-md font-bold text-gray-600">{latestBlog.date}</span> </h1>
-                    <h1 className="text-4xl font-bold mt-2">{latestBlog.title}</h1>
-                    <p className="text-gray-500 font-semibold mt-5">{latestBlog.introduction}</p>
+                    <h1 className="text-6xl font-bold mt-2">{latestBlog.title}</h1>
+                    <p className="text-gray-500  mt-5">{latestBlog.introduction}</p>
 
                     <div className="flex flex-row items-center mt-5">
                       <div className="mr-4">
@@ -97,7 +97,7 @@ export default function Home() {
                           <div className="p-5 flex flex-col h-full"> {/* Set fixed size for the content container */}
                             <p className="font-bold mb-2">{blog.category}, {blog.subCategory} - <span className="text-gray-600">{blog.date}</span></p>
                             <h2 className="font-bold text-3xl mb-2">{blog.title}</h2>
-                            <h2 className="font-bold text-gray-600 mb-2 overflow-hidden">{blog.introduction}</h2>
+                            <h2 className="text-gray-600 mb-2 overflow-hidden">{blog.introduction}</h2>
                             <div className="flex flex-row items-center ">
                               <div>
                                 <img src={latestBlog.imageurl} className="rounded-full mr-3 w-14 h-14" alt="User Image" />
@@ -135,7 +135,7 @@ export default function Home() {
                                     <div className="p-5 flex flex-col h-full">
                                       <p className="font-bold mb-2">{blog.category}, {blog.subCategory} - <span className="text-gray-600">{blog.date}</span></p>
                                       <h2 className="font-bold text-3xl mb-2">{blog.title}</h2>
-                                      <h2 className="font-bold text-gray-600 mb-2 overflow-hidden">{blog.introduction}</h2>
+                                      <h2 className=" text-gray-600 mb-2 overflow-hidden">{blog.introduction}</h2>
                                       <div className="flex flex-row items-center ">
                                         <div>
                                           <img src={latestBlog.imageurl} className="rounded-full mr-3 w-14 h-14" alt="User Image" />

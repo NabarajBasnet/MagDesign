@@ -63,8 +63,15 @@ import { useEffect, useState } from "react";
 
 const Categories = () => {
     const [blogs, setBlogs] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(3)
     const [startIndex, setStartIndex] = useState(0)
     const [endIndex, setEndIndex] = useState(3)
+    const blogsLength = blogs.length;
+    console.log('Length: ', blogsLength)
+    const numberOfPages = blogsLength / postsPerPage
+    console.log('Start index: ', startIndex);
+    console.log('End index: ', endIndex);
 
     const getAllBlogs = async () => {
         try {
@@ -81,16 +88,34 @@ const Categories = () => {
     }, []);
 
     // Handle Previous Page
-    const handlePrevPage = ()=>
-    {
-        setStartIndex(startIndex-1)
-        setEndIndex(endIndex+1)
+    const handlePrevPage = () => {
+
+        if (startIndex <= 0) {
+            setStartIndex(0)
+            setCurrentPage(1)
+            throw new Error('No more previous pages')
+        }
+        else {
+            setStartIndex(startIndex - 3)
+            setCurrentPage(currentPage - 1)
+            setEndIndex(endIndex - 3)
+
+        }
     }
 
-    const handleNextPage = ()=>
-    {
-        setStartIndex(startIndex-1)
-        setEndIndex(endIndex+1)
+    const handleNextPage = () => {
+        if (endIndex > blogsLength) {
+            setStartIndex(blogsLength - 1)
+            setEndIndex(10);
+            setCurrentPage(blogsLength / 3);
+            throw new Error('No more pages')
+        }
+        else {
+            setStartIndex(startIndex + 3)
+            setCurrentPage(currentPage + 1)
+            setEndIndex(endIndex + 3)
+        }
+
     }
 
     return (
@@ -98,21 +123,21 @@ const Categories = () => {
             <div className="flex flex-col justify-center items-center">
                 <h1>Categories</h1>
                 <div>
-                    {blogs.length >= 1?(
-                        <div className="grid grid-cols-3 m-4">
-                            {blogs.slice(startIndex, endIndex).map((blog)=>(
+                    {blogs.length >= 1 ? (
+                        <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 m-4">
+                            {blogs.slice(startIndex, endIndex).map((blog) => (
                                 <div key={blog._id} className="flex flex-col items-center m-6">
                                     <h1 className="text-xl font-bold">{blog.title}</h1>
-                                    <img src={blog.imageurl} className="w-80 h-96"/>
+                                    <img src={blog.imageurl} className="w-80 h-96" />
                                 </div>
                             ))}
                         </div>
-                    ):('')}
+                    ) : ('')}
 
                 </div>
                 <div className="flex flex-row items-center">
                     <button onClick={handlePrevPage} className="bg-green-500 p-2 hover:scale-105 transition-all m-3 w-32 rounded-lg text-white font-bold">Prev</button>
-                    <p>2</p>
+                    <p>{currentPage}</p>
                     <button onClick={handleNextPage} className="bg-blue-500 p-2 hover:scale-105 transition-all m-3 w-32 rounded-lg text-white font-bold">Next</button>
                 </div>
             </div>
