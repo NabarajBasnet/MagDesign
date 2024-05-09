@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req, content) => {
     try {
+
         await mongoose.connect(connectionStr);
         const blogId = content.params.blog;
         const filter = { _id: blogId };
@@ -36,6 +37,7 @@ export const PUT = async (req, content) => {
 
 
 export const DELETE = async (req, content) => {
+
     try {
         await mongoose.connect(connectionStr);
         const blogId = content.params.blog;

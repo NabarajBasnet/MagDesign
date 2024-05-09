@@ -7,13 +7,15 @@ import { useSelector } from "react-redux";
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [blogsPerPage] = useState(3); // Number of blogs to display per page
-
+    const [blogsPerPage] = useState(6); // Number of blogs to display per page
+    const nabaraj = Number(10)
     const searchedQueryWord = useSelector(state => state.searchedQueryWord);
 
     const getAllBlogs = async () => {
         try {
-            const req = await fetch('http://localhost:3000/api/blogs/');
+            // const req = await fetch(`http://localhost:3000/api/blogs/?page=${1}&limit=${3}`);
+            const req = await fetch(`http://localhost:3000/api/blogs/?nabaraj=${nabaraj}&`);
+            console.log(req);
             const res = await req.json();
             setBlogs(res.result);
         }

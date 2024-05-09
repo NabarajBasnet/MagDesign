@@ -31,72 +31,46 @@ const Navbar = () => {
 
 
     return (
-        <>
-            <div className="flex flex-row-reverse w-full">
-                <nav className="flex flex-row items-start w-full">
-                    <div className="flex lg:flex-row md:flex-col sm:flex-col items-center justify-around p-8 border border-gray-300 lg:w-full md:w-full">
-                        <div>
-                            <h1 className="md:flex sm:flex lg:hidden font-bold text-black text-2xlbefore:">MAGDESIGN</h1>
-                        </div>
-
-                        <div>
-                            <div className="flex md:hidden sm:hidden lg:flex lg:flex-row items-center p-2 border w-full border-gray-400 rounded-3xl">
-                                <img src="/icons/searchicon.png" className="w-6 cursor-pointer" />
-                                <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search..." className="outline-none border-none lg:w-80 md:w-40 sm:w-20 bg-transparent " />
-                            </div>
-                        </div>
-
-                        <div className="14">
-                            <Link href={'/'}>
-                                <h1 className="md:hidden sm:hidden lg:flex font-bold text-black text-2xlbefore:">MAGDESIGN</h1>
-                            </Link>
-                        </div>
-
-
-
-                        <div className="flex flex-row items-center justify-between">
-                            <div className="mr-64">
-                                <ul className="flex flex-row items-center">
-                                    <li className="mr-2"><Link href={'/'}><img src="/icons/facebook.png" className="w-6" /></Link></li>
-                                    <li className="mr-2"><Link href={'/'}><img src="/icons/instagram.png" className="w-6" /></Link></li>
-                                    <li className="mr-2"><Link href={'/'}><img src="/icons/twitter.png" className="w-6" /></Link></li>
-                                </ul>
-                            </div>
-
-
-                            <div>
-                                {navsidebarState ? (
-                                    <img onClick={DispatchnavsidebarState} src={"icons/closewindow.png"} className="cursor-pointer w-8" />
-
-                                ) : (
-                                    <img onClick={DispatchnavsidebarState} src={"icons/burgermenu.png"} className="cursor-pointer w-8" />
-                                )}
-                            </div>
-
-                        </div>
-                        <div>
-                            <div className="flex md:flex sm:flex lg:hidden lg:flex-row items-center md:mt-10 sm:mt-6 p-2 border w-full border-gray-400 rounded-3xl">
-                                <img src="/icons/searchicon.png" className="w-6 cursor-pointer" />
-                                <input type="text" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search..." className="outline-none border-none lg:w-80 md:w-80 sm:w-80 bg-transparent " />
-                            </div>
-                        </div>
-
+        <section className="mx-auto px-4 py-4">
+            <div className="w-full">
+                <div className="w-full  flex justify-between h-28">
+                    <div className="w-4/12 flex  items-center">
+                        <Link href={'/'} className="flex w-full">
+                            <img src="/icons/twitter.png" className="w-7" />
+                            <img src="/icons/facebook.png" className="w-7" />
+                            <img src="/icons/instagram.png" className="w-7" />
+                        </Link>
                     </div>
-
-                </nav>
-                <div>
-                    {
-                        navsidebarState && (
-                            <>
-                                <div className="fixed bg-black">
-                                    <SideNavbar />
-                                </div>
-                            </>
+                    <div className="w-4/12 flex  justify-center">
+                        <Link href={'/'}>
+                            <h1 className="font-bold text-2xl">MAGDESIGN</h1>
+                        </Link>
+                    </div>
+                    <div className="w-4/12 flex justify-end items-center">
+                        {navsidebarState ? (
+                            <img src="/icons/close-button.png" className="w-8 cursor-pointer" onClick={DispatchnavsidebarState} />
+                        ) : (
+                            <img src="/icons/menu.png" className="w-8 cursor-pointer" onClick={DispatchnavsidebarState}/>
                         )}
+                    </div>
+                </div>
+
+                <div className="w-full flex justify-center items-center">
+                    <div className="w-full flex border border-gray-500 p-2 rounded-full">
+                        <img src="/icons/search.png" className="w-6 cursor-pointer" />
+                        <input type="text" className="outline-none border-none bg-transparent w-full" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} placeholder="Search..."  />
+                    </div>
+                </div>
+
+                <div>
+                    {navsidebarState?(
+                        <SideNavbar/>
+                    ):(
+                        ''
+                    )}
                 </div>
             </div>
-
-        </>
+        </section>
     )
 }
 

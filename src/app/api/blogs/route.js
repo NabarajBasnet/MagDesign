@@ -3,17 +3,16 @@ import connectionStr from "@/components/lib/DB";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req, content) => {
     try {
         await mongoose.connect(connectionStr);
-        const blogposts = await BlogPost.find();
-        return NextResponse.json({ result: blogposts, success: true })
-
+        const blogPosts = await BlogPost.find();
+        return NextResponse.json({ result: blogPosts, success: true, ok: true, request: req });
+    } catch (error) {
+        console.error(error);
+        return NextResponse.error(error);
     }
-    catch (error) {
-
-    }
-}
+};
 
 
 export const POST = async (req) => {
