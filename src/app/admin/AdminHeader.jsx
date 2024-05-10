@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AdminSidebarState } from "@/components/redux/action";
 
@@ -20,10 +19,10 @@ const AdminHeader = () => {
                 <div className="flex flex-row items-center justify-between p-4 w-full">
                     <div>
                         {adminSidebar ? (
-                            <img onClick={dispatchAdminSidebarState} src="/icons/closewindow.png" className="cursor-pointer w-6" />
+                            <img onClick={dispatchAdminSidebarState} src="/icons/close-button.png" className="cursor-pointer w-7" />
 
                         ) : (
-                            <img onClick={dispatchAdminSidebarState} src="/icons/burgermenu.png" className="cursor-pointer w-6" />
+                            <img onClick={dispatchAdminSidebarState} src="/icons/menu.png" className="cursor-pointer w-7" />
                         )}
                     </div>
 

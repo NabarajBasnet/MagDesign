@@ -112,9 +112,9 @@ export default function Home() {
             </div>
 
             <div className="w-full">
-              <h1 className="flex justify-center text-3xl font-bold">Most Popular Posts</h1>
+              <h1 className="text-3xl font-bold">Most Popular Posts</h1>
               {blogposts.slice(0, 3).map((blog) => (
-                <section className="border mt-4 p-4 rounded-lg shadow-xl">
+                <section className="grid md:grid-cols-3 border mt-4 p-4 rounded-lg shadow-xl">
                   <div className="w-full flex justify-center">
                     <Link href={`/blogs/${blog._id}`} className="w-full flex justify-center">
                       <img src={blog.imageurl} className="rounded-lg w-full" />

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 const AdminSidebar = () => {
