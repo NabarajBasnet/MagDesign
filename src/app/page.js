@@ -7,37 +7,17 @@ import { useState, useEffect } from "react";
 export default function Home() {
 
   const [blogposts, setBlogPosts] = useState([]);
-  const [limitedBlogs, setLimitedBlogs] = useState([]);
   const latestBlog = blogposts[blogposts.length - 1];
-  const [paginaatedBlogs, setPaginatedBlogs] = useState([]);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(3);
-
-  // Paginate function to slice the blogs posts array based on the current page
-  const paginate = (blogposts, pageNumber) => {
-    const startIndex = (pageNumber - 1) * postsPerPage;
-    const endIndex = startIndex + postsPerPage;
-    const toPaginateBlogs = blogposts.slice(startIndex, endIndex);
-    setPaginatedBlogs(toPaginateBlogs);
-  };
+  const [page, setPage] = useState(2)
+  const [limit, setLimit] = useState(2)
 
 
-  //  Function to handle page change
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    paginate(blogposts, pageNumber);
-  }
 
   const fetchAllBlogPosts = async () => {
     try {
       const req = await fetch('http://localhost:3000/api/blogs');
       const res = await req.json();
-      const limitedNoBlogs = res.result.slice(0, 3);
-      setLimitedBlogs(limitedNoBlogs);
       setBlogPosts(res.result);
-      paginate(res.result, currentPage);
-
     }
     catch (error) {
       console.log(error)
@@ -47,6 +27,28 @@ export default function Home() {
   useEffect(() => {
     fetchAllBlogPosts();
   }, []);
+
+  // Pass query strings for pagination
+  const handlePagination = async () => {
+    const req = await fetch(`http://localhost:3000/api/blogs/?page=${page}&limit=${page}`);
+    const res = await req.json();
+    console.log('Response: ', res);
+  };
+
+  const handleNextPage = ()=>
+  {
+    setPage(page+1);
+  };
+
+  const handlePrevPage = ()=>
+  {
+    setPage(page-1);
+  };
+
+  useEffect(() => {
+    handlePagination()
+  }, [page, limit]);
+
 
 
   return (
@@ -140,8 +142,15 @@ export default function Home() {
                       </div>
                     </Link>
                   </div>
+
                 </section>
               ))}
+            </div>
+
+            <div className="flex justify-center items-center w-full">
+              <button onClick={handlePrevPage} className="w-32 m-6  bg-green-500 p-2  rounded-lg text-white font-bold">Previous</button>
+              <h1 className="font-bold">{page}</h1>
+              <button onClick={handleNextPage} className="w-32 m-6 bg-blue-500 p-2 rounded-lg text-white font-bold">Next</button>
             </div>
 
             <div className="w-full mt-10 flex justify-around items-start p-4">
