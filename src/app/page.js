@@ -54,14 +54,14 @@ export default function Home() {
       <div className="w-full">
         {latestBlog && (
           <>
-            <h1 className="text-3xl flex justify-center font-bold">Latest</h1>
-            <div className="w-full md:flex items-center py-10 justify-between">
+            <h1 className="text-3xl md:text-7xl mt-16 flex justify-center font-bold">Latest</h1>
+            <div className="w-full md:flex items-center mt-10 py-10 px-14 justify-between">
               <div className="w-full bg-black md:w-5/12 h-full rounded-xl">
                 <Link href={`blogs/${latestBlog._id}`}>
                   <img src={latestBlog.imageurl} className="rounded-md shadow-2xl w-full" />
                 </Link>
               </div>
-              <div className="md:w-6/12 h-full rounded-xl p-4 ">
+              <div className="md:w-6/12 h-full rounded-xl">
                 <Link href={`blogs/${latestBlog._id}`}>
                   <div>
                     <p className="mt-4 font-bold text-md">{latestBlog.category}, {latestBlog.subCategory} - {latestBlog.date}</p>
@@ -83,14 +83,14 @@ export default function Home() {
 
             <div className="flex flex-row w-full">
               {blogposts && (
-                <div className="grid md:grid-cols-2 p-6 w-full">
-                  {blogposts.slice(0,3).map((blog, _id) => (
-                    <Link href={`/blogs/${blog._id}`} key={_id} className="p-5 h-2/3">
-                      <div className="items-center border rounded-xl shadow-2xl w-full">
-                        <div className="w-full">
-                          <img src={blog.imageurl} alt="Blog Image" className="w-full object-cover rounded-t-xl shadow-2xl" />
+                <div className="grid md:grid-cols-3 p-6 w-full">
+                  {blogposts.slice(0, 3).map((blog, _id) => (
+                    <Link href={`/blogs/${blog._id}`} key={_id} className="p-5 flex justify-center items-center">
+                      <div className="rounded-xl w-full">
+                        <div className="w-full flex justify-center">
+                          <img src={blog.imageurl} alt="Blog Image" className="w-11/12 h-96 rounded-xl shadow-lg" />
                         </div>
-                        <div className="p-5">
+                        <div className="p-5 flex-col text-center">
                           <p className="font-bold mb-2">{blog.category}, {blog.subCategory} - <span className="text-gray-600">{blog.date}</span></p>
                           <h2 className="font-bold text-xl mb-2">{blog.title}</h2>
                           <h2 className="text-gray-700 mb-2 overflow-hidden">{blog.introduction}</h2>
@@ -111,13 +111,14 @@ export default function Home() {
               )}
             </div>
 
-            <div className="w-full">
-              <h1 className="text-3xl font-bold">Most Popular Posts</h1>
-              {blogposts.slice(0, 3).map((blog) => (
-                <section className="grid md:grid-cols-3 border mt-4 p-4 rounded-lg shadow-xl">
-                  <div className="w-full flex justify-center">
-                    <Link href={`/blogs/${blog._id}`} className="w-full flex justify-center">
-                      <img src={blog.imageurl} className="rounded-lg w-full" />
+            <h1 className="text-3xl md:text-7xl mt-16 font-bold flex justify-center">Most Popular Posts</h1>
+
+            <div className="w-full mt-10 grid md:grid-cols-3">
+              {blogposts.slice(3, 6).map((blog) => (
+                <section className="p-5 w-full mt-4 rounded-lg">
+                  <div className="">
+                    <Link href={`/blogs/${blog._id}`} className=" flex justify-center">
+                      <img src={blog.imageurl} className="w-11/12 rounded-lg" />
                     </Link>
                   </div>
                   <div className="w-full flex justify-center">
@@ -141,6 +142,55 @@ export default function Home() {
                   </div>
                 </section>
               ))}
+            </div>
+
+            <div className="w-full mt-10 flex justify-around items-start p-4">
+              <div className="w-4/12 flex-col justify-center items-center">
+                {blogposts.slice(0, 3).map((blog) => (
+                  <section className="flex p-5">
+                    <div>
+                      <img src={blog.imageurl} className="w-52 h-52 rounded-2xl" />
+                    </div>
+                    <div className="ml-5">
+                      <p className="font-bold text-gray-700">{blog.category}, {blog.subCategory} - {blog.date}</p>
+                      <h1 className="text-3xl font-bold">{blog.title}</h1>
+                      <div>
+                        <div>
+                          <img src={blog.imageurl} className="w-16 h-16 rounded-full" />
+                        </div>
+                        <div>
+                          <h1 className="font-bold text-xl">{blog.author}</h1>
+                          <p className="font-bold text-gray-700">{blog.date}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                ))}
+              </div>
+
+
+              <div className="w-4/12 flex-col justify-center items-center">
+                {blogposts.slice(3, 6).map((blog) => (
+                  <section className="flex p-5">
+                    <div>
+                      <img src={blog.imageurl} className="w-52 h-52 rounded-2xl" />
+                    </div>
+                    <div className="ml-5">
+                      <p className="font-bold text-gray-700">{blog.category}, {blog.subCategory} - {blog.date}</p>
+                      <h1 className="text-3xl font-bold">{blog.title}</h1>
+                      <div>
+                        <div>
+                          <img src={blog.imageurl} className="w-16 h-16 rounded-full" />
+                        </div>
+                        <div>
+                          <h1 className="font-bold text-xl">{blog.author}</h1>
+                          <p className="font-bold text-gray-700">{blog.date}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                ))}
+              </div>
             </div>
 
           </>
