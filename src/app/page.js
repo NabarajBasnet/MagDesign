@@ -8,8 +8,9 @@ export default function Home() {
 
   const [blogposts, setBlogPosts] = useState([]);
   const latestBlog = blogposts[blogposts.length - 1];
-  const [page, setPage] = useState(2)
-  const [limit, setLimit] = useState(2)
+  const [page, setPage] = useState(1);
+
+  const blogsPerPage = 3;
 
 
 
@@ -30,7 +31,7 @@ export default function Home() {
 
   // Pass query strings for pagination
   const handlePagination = async () => {
-    const req = await fetch(`http://localhost:3000/api/blogs/?page=${page}&limit=${page}`);
+    const req = await fetch(`http://localhost:3000/api/blogs/?page=${page}&limit=${blogsPerPage}`);
     const res = await req.json();
     console.log('Response: ', res);
   };
@@ -47,8 +48,11 @@ export default function Home() {
 
   useEffect(() => {
     handlePagination()
-  }, [page, limit]);
+  }, [page]);
 
+  useEffect(() => {
+    handlePagination()
+  },[]);
 
 
   return (
@@ -153,7 +157,7 @@ export default function Home() {
               <button onClick={handleNextPage} className="w-32 m-6 bg-blue-500 p-2 rounded-lg text-white font-bold">Next</button>
             </div>
 
-            <div className="w-full mt-10 flex justify-around items-start p-4">
+            {/* <div className="w-full mt-10 flex justify-around items-start p-4">
               <div className="w-4/12 flex-col justify-center items-center">
                 {blogposts.slice(0, 3).map((blog) => (
                   <section className="flex p-5">
@@ -200,7 +204,7 @@ export default function Home() {
                   </section>
                 ))}
               </div>
-            </div>
+            </div> */}
 
           </>
         )}
