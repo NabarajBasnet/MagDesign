@@ -52,14 +52,14 @@ const SingleBlogPost = (props) => {
                     <>
                         <div className="w-full flex flex-col justify-center items-center">
                             <div className="flex py-14 flex-col items-center justify-center w-full md:w-11/12">
-                                <img src={blog.imageurl} className="w-16 h-16 rounded-full"/>
+                                <img src={blog.imageurl} className="w-16 h-16 rounded-full" />
                                 <h1 className="font-bold py-1  text-xl text-gray-700">{blog.author}</h1>
                                 <h1 className="font-bold text-xl text-gray-700">{blog.date}</h1>
                             </div>
                             <div className="flex flex-col justify-center items-center w-full md:w-11/12">
                                 <h1 className="font-bold text-2xl md:text-4xl py-4 text-center">{blog.title}</h1>
                                 <h1 className="text-gray-600 font-semibold font-sans text-center py-4">{blog.introduction}</h1>
-                                <img src={blog.imageurl} className="w-full rounded-xl mt-4"/>
+                                <img src={blog.imageurl} className="w-full rounded-xl mt-4" />
                                 <p className="py-5 font-semibold text-gray-700 font-xl">{blog.bodycontent}</p>
                             </div>
 
@@ -68,11 +68,47 @@ const SingleBlogPost = (props) => {
                             <div className="flex flex-col items-start w-full md:w-11/12 ">
                                 <h1 className="text-gray-700 font-bold text-3xl">Share</h1>
                                 <ul className="flex py-9">
-                                    <li className="px-4"><Link href={'/'}><img src="/icons/facebook.png" className="w-8"/></Link></li>
-                                    <li className="px-4"><Link href={'/'}><img src="/icons/twitter.png" className="w-8"/></Link></li>
-                                    <li className="px-4"><Link href={'/'}><img src="/icons/instagram.png" className="w-8"/></Link></li>
-                                    <li className="px-4"><Link href={'/'}><img src="/icons/google.png" className="w-8"/></Link></li>
+                                    <li className="px-4"><Link href={'/'}><img src="/icons/facebook.png" className="w-8" /></Link></li>
+                                    <li className="px-4"><Link href={'/'}><img src="/icons/twitter.png" className="w-8" /></Link></li>
+                                    <li className="px-4"><Link href={'/'}><img src="/icons/instagram.png" className="w-8" /></Link></li>
+                                    <li className="px-4"><Link href={'/'}><img src="/icons/google.png" className="w-8" /></Link></li>
                                 </ul>
+                            </div>
+
+                            <div className="w-full md:flex md:justify-around px-4 py-4">
+                                <div className="w-full md:w-5/12">
+                                    <label className="md:block">
+                                        <p>
+                                            Full Name
+                                        </p>
+                                        <input type="text" className="w-full outline-none border-2 border-gray-400 p-2 rounded-lg" placeholder="Full Name" />
+                                    </label>
+                                    <label>
+                                        <p>
+                                            Email
+                                        </p>
+                                        <input type="email" className="w-full outline-none border-2 border-gray-400 p-2 rounded-lg" placeholder="Email Address" />
+                                    </label>
+                                    <label>
+                                        <p>
+                                            Phone Number
+                                        </p>
+                                        <input type="text" className="w-full outline-none border-2 border-gray-400 p-2 rounded-lg" placeholder="Phone Number" />
+                                    </label>
+                                </div>
+                                <div className="w-full md:w-5/12 h-full">
+                                    <label>
+                                        <p>
+                                            Your Comment
+                                        </p>
+                                        <textarea type="textarea" className="h-full text-start w-full outline-none border-2 border-gray-400 p-2 rounded-lg" placeholder="Your Comment" />
+                                    </label>
+
+                                    <div className="w-full flex justify-center md:block">
+                                        <button className="bg-green-500 p-4 w-6/12 rounded-xl font-bold text-white">Submit</button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </>

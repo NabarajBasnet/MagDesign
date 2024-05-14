@@ -113,14 +113,14 @@ const EditBlog = (props) => {
     }
 
     return (
-        <>
-            <div className="flex flex-col justify-center items-center h-full">
+        <section className="mx-auto px-4">
+            <div className="w-fullh-full">
                 {blogUpdated ? (
                     <div className="shadow-md border border-gray-500 rounded-md p-8 bg-green-200 text-blak font-bold font-sans">
                         <p>Blog Updated Successfully!</p>
                     </div>
                 ) : ('')}
-                <form className="lg:w-1/2 md:w-full sm:w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form className="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Title:
@@ -208,7 +208,7 @@ const EditBlog = (props) => {
                     </div>
                 </form>
             </div>
-        </>
+        </section>
     );
 
 };

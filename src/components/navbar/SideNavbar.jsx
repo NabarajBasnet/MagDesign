@@ -21,13 +21,10 @@ const SideNavbar = () => {
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/'}>Home</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/blogs'}>Blogs</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/categories'}>Categories</Link></li>
-                        <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/aboutus'}>About Us</Link></li>
-                        <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/contactus'}>Contact Us</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/account'}>Account</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/admin'}>Admin</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full flex justify-center">
                             <button onClick={DispatchSideNavbarStates} className="bg-slate-200 p-2 rounded-lg text-red-600 hover:text-white cursor-pointer font-bold hover:bg-red-700">Close Menu</button>
-                        {/* <img onClick={DispatchSideNavbarStates} src="icons/close-button.png" className="cursor-pointer w-8" /> */}
                         </li>
                     </ul>
                 </div>
