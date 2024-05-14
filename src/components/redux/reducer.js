@@ -2,7 +2,7 @@
 
 const initialState = {
     SideNavbarState: false,
-    adminSidebar: true,
+    adminSidebar: false,
     searchedQueryWord: ''
 }
 

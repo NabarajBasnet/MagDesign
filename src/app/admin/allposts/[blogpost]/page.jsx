@@ -114,13 +114,13 @@ const EditBlog = (props) => {
 
     return (
         <section className="mx-auto px-4">
-            <div className="w-fullh-full">
+            <div className="w-full h-full">
                 {blogUpdated ? (
                     <div className="shadow-md border border-gray-500 rounded-md p-8 bg-green-200 text-blak font-bold font-sans">
                         <p>Blog Updated Successfully!</p>
                     </div>
                 ) : ('')}
-                <form className="w-full bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form className="w-full flex flex-col  bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Title:

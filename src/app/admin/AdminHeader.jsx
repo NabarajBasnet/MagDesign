@@ -2,6 +2,7 @@
 
 import { useSelector, useDispatch } from "react-redux";
 import { AdminSidebarState } from "@/components/redux/action";
+import Link from "next/link";
 
 
 const AdminHeader = () => {
@@ -14,16 +15,19 @@ const AdminHeader = () => {
     }
 
     return (
-        <>
-            <div className="w-full bg-orange-200">
-                <div className="flex flex-row items-center justify-between p-4 w-full">
-                    <div>
+        <section className="mx-auto">
+            <div className="w-full bg-blue-700">
+                <div className="flex items-center justify-between p-4 w-full text-white font-bold">
+                    <div className="flex items-center w-6/12">
                         {adminSidebar ? (
-                            <img onClick={dispatchAdminSidebarState} src="/icons/close-button.png" className="cursor-pointer w-7" />
+                            <img onClick={dispatchAdminSidebarState} src="/icons/close-button.png" className="bg-white rounded-full hover:scale-105 transition-all cursor-pointer w-7" />
 
                         ) : (
-                            <img onClick={dispatchAdminSidebarState} src="/icons/menu.png" className="cursor-pointer w-7" />
+                            <img onClick={dispatchAdminSidebarState} src="/icons/menu.png" className="cursor-pointer w-7 bg-white rounded-full hover:scale-105 transition-all" />
                         )}
+                        <Link href={'/'} className="ml-16">
+                            <h1>Home</h1>
+                        </Link>
                     </div>
 
                     <div>
@@ -31,7 +35,7 @@ const AdminHeader = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     )
 }
 
