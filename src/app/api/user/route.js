@@ -44,3 +44,4 @@ export const POST = async (req) =>
     await mongoose.connect(connectionStr);
     return NextResponse.json({ success: true })
 }
+

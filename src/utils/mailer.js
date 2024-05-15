@@ -52,3 +52,4 @@ const sendEmail = async ({ email, emailType, userId }) => {
 
 
 export default sendEmail;
+
