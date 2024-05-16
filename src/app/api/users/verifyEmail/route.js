@@ -1,16 +1,14 @@
-import mongoose from "mongoose";
+import BlogPost from "@/components/lib/BlogsSchema/blogschema"
 import ConnectDatabase from "@/components/lib/dbConnection/DatabaseConnection";
-import { NextResponse } from "next/server";
+import { NextResponse } from "next/server"
 
-export const GET = async()=>
-{
-    try{
-        
+
+export const GET = async () => {
+    try {
+        await ConnectDatabase();
+        const data = await BlogPost.find();
+        return NextResponse.json({ result: data })
+    } catch (error) {
+        return NextResponse.json({ error: 'Error found!' })
     }
-    catch(error){
-        return NextResponse.json({error})
-    }
-    await ConnectDatabase()
-    return NextResponse.json({data: true, success: true})
 }
-

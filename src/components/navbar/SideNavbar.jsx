@@ -21,6 +21,7 @@ const SideNavbar = () => {
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/'}>Home</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/blogs'}>Blogs</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/categories'}>Categories</Link></li>
+                        <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/account'}>My account</Link></li>
                         <div className="flex justify-center items-center">
                             <li className="p-4 flex justify-center items-center">
                                 <Link href={'/account/login/'} className="flex items-center">
