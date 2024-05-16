@@ -12,6 +12,7 @@ export const POST = async (req) =>
     try {
         const reqBody = await req.json();
         const {username, email, password} = reqBody;
+        
         // Validation
         console.log('Req Body: ', reqBody)
 

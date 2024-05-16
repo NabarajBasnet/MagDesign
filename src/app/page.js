@@ -1,6 +1,5 @@
 'use client'
 
-
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -33,17 +32,14 @@ export default function Home() {
   const handlePagination = async () => {
     const req = await fetch(`http://localhost:3000/api/blogs/?page=${page}&limit=${blogsPerPage}`);
     const res = await req.json();
-    console.log('Response: ', res);
   };
 
-  const handleNextPage = ()=>
-  {
-    setPage(page+1);
+  const handleNextPage = () => {
+    setPage(page + 1);
   };
 
-  const handlePrevPage = ()=>
-  {
-    setPage(page-1);
+  const handlePrevPage = () => {
+    setPage(page - 1);
   };
 
   useEffect(() => {
@@ -52,7 +48,7 @@ export default function Home() {
 
   useEffect(() => {
     handlePagination()
-  },[]);
+  }, []);
 
 
   return (
