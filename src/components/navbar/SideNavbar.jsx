@@ -19,7 +19,7 @@ const SideNavbar = () => {
                 <div className=" flex w-full justify-center text-white font-bold">
                     <ul className="w-full flex-col items-center text-center justify-center">
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/'}>Home</Link></li>
-                        <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/blogs'}>Blogs</Link></li>
+                        {/* <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/blogs'}>Blogs</Link></li> */}
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/categories'}>Categories</Link></li>
                         <li className=" p-6 cursor-pointer rounded-lg  w-full"><Link href={'/account'}>My account</Link></li>
                         <div className="flex justify-center items-center">

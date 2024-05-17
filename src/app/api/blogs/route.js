@@ -4,19 +4,26 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, content) => {
-
+    console.log(req)
     const url = new URL(req.url);
     const searchQuery = url.searchParams.get('search')
     const currentPage = url.searchParams.get('page');
     const blogsPerPage = url.searchParams.get('limit');
-    console.log('Current Page: ', currentPage);
-    console.log('Blogs Per Page: ', blogsPerPage);
-    console.log('Search Query: ',searchQuery)
+
+    console.log('Search Query: ', searchQuery)
+
 
     try {
-        await mongoose.connect(connectionStr);
-        const blogPosts = await BlogPost.find().skip(currentPage).limit(blogsPerPage);
-        return NextResponse.json({ result: blogPosts, success: true, ok: true, request: req });
+        if (searchQuery) {
+            console.log('Query? ', true)
+            const searchedQueryData = await BlogPost.find({ title: searchQuery });
+            return NextResponse.json({ result: searchedQueryData, success: true })
+        }
+        else {
+            await mongoose.connect(connectionStr);
+            const blogPosts = await BlogPost.find().skip(currentPage).limit(blogsPerPage);
+            return NextResponse.json({ result: blogPosts, success: true, ok: true, request: req });
+        }
     } catch (error) {
         console.error(error);
         return NextResponse.error(error);

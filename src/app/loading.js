@@ -3,9 +3,9 @@
 const loading = ()=>
 {
     return(
-        <>
-        <h1>Loading...</h1>
-        </>
+        <section className="flex justify-center items-center">
+        <h1 className="text-4xl font-bold ">Loading...</h1>
+        </section>
     )
 }
 
