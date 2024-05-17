@@ -1,4 +1,4 @@
-import BlogPost from "@/components/lib/BlogsSchema/blogschema"
+import BlogPost from "@/components/lib/BlogsModel/blogschema"
 import ConnectDatabase from "@/components/lib/dbConnection/DatabaseConnection";
 import { NextResponse } from "next/server"
 

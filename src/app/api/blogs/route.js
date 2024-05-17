@@ -1,4 +1,4 @@
-import BlogPost from "@/components/lib/BlogsSchema/blogschema";
+import BlogPost from "@/components/lib/BlogsModel/blogschema";
 import connectionStr from "@/components/lib/DB";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";

@@ -13,7 +13,7 @@ const Footer = () => {
                     </div>
                     <div className="w-full md:flex">
                         <input type="email" className="w-full md:w-9/12 m-2 border-2 outline-none placeholder:text-xl placeholder:text-gray-500 border-gray-400 rounded-lg p-5" placeholder="Enter your email" />
-                        <button className="w-full md:w-3/12 bg-orange-500 hover:bg-white hover:text-orange-500 hover:shadow-lg h-16 transition-all rounded-full text-white m-2 font-bold ">SUBSCRIBE</button>
+                        <button className="w-full md:w-3/12 bg-black hover:bg-white hover:text-black hover:shadow-lg h-16 transition-all rounded-full text-white m-2 font-bold ">SUBSCRIBE</button>
                     </div>
                 </div>
 

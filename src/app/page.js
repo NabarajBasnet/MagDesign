@@ -148,9 +148,9 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center items-center w-full">
-              <button onClick={handlePrevPage} className="w-32 m-6  bg-green-500 p-2  rounded-lg text-white font-bold">Previous</button>
+              <button onClick={handlePrevPage} className="w-32 m-6  bg-black hover:bg-gray-700 p-2 transition-all rounded-lg text-white font-bold">Previous</button>
               <h1 className="font-bold">{page}</h1>
-              <button onClick={handleNextPage} className="w-32 m-6 bg-blue-500 p-2 rounded-lg text-white font-bold">Next</button>
+              <button onClick={handleNextPage} className="w-32 m-6 bg-black hover:bg-gray-700 transition-all p-2 rounded-lg text-white font-bold">Next</button>
             </div>
 
             {/* <div className="w-full mt-10 flex justify-around items-start p-4">

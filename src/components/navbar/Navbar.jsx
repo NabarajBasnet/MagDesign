@@ -77,6 +77,7 @@ const Navbar = () => {
                                     <img src="/icons/facebook.png" className="w-7" />
                                     <img src="/icons/instagram.png" className="w-7" />
                                 </Link>
+
                                 <div className="w-3/12 justify-end">
                                     {navsidebarState ? (
                                         <img src="/icons/close-button.png" className="w-8 cursor-pointer" onClick={DispatchnavsidebarState} />

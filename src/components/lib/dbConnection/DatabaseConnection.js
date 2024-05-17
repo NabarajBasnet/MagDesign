@@ -8,15 +8,8 @@ const ConnectDatabase = async () => {
 
     const DB_URI = `mongodb+srv://${username}:${password}@cluster0.uv6odwq.mongodb.net/magdesign?retryWrites=true&w=majority&appName=Cluster0`;
     const req = await mongoose.connect(DB_URI);
-    if (req.STATES.connected) {
-      console.log('Database Connected')
-    }
-    else if (req.STATES.connecting) {
-      console.log('Database Connecting')
-    }
-    else {
-      console.log('Database Error!')
-    }
+    console.log('Database connected')
+    return NextResponse.json({success: true})
   } catch (error) {
     console.log('Error: ', error);
     return NextResponse.json({ error: 'Error connecting to database!' });
