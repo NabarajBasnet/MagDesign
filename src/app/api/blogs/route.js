@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export const GET = async (req, content) => {
-    console.log(req)
     const url = new URL(req.url);
     const searchQuery = url.searchParams.get('search')
     const currentPage = url.searchParams.get('page');
@@ -17,11 +16,13 @@ export const GET = async (req, content) => {
         if (searchQuery) {
             console.log('Query? ', true)
             const searchedQueryData = await BlogPost.find({ title: searchQuery });
+            console.log('Response from searched query')
             return NextResponse.json({ result: searchedQueryData, success: true })
         }
         else {
             await mongoose.connect(connectionStr);
             const blogPosts = await BlogPost.find().skip(currentPage).limit(blogsPerPage);
+            console.log('Response from default query')
             return NextResponse.json({ result: blogPosts, success: true, ok: true, request: req });
         }
     } catch (error) {

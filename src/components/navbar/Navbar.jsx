@@ -31,15 +31,14 @@ const Navbar = () => {
         DispatchSearchedQueryAction()
     }, [searchQuery]);
 
-    const searchPostsInServer = async () => {
-        const req = await fetch(`http://localhost:3000/api/blogs/?search=${searchQuery}`);
-    }
+    // const searchPostsInServer = async () => {
+    //     const req = await fetch(`http://localhost:3000/api/blogs/?search=${searchQuery}`);
+    // }
 
     const handleKeyPressForSearch = (e) => {
         if (e.key === 'Enter') {
             dispatch(SearchedQueryAction(searchQuery));
-            router.push('/blogs/')
-            searchPostsInServer();
+            router.push('/catalogs/')
         }
         else {
             ''
