@@ -24,7 +24,7 @@ const SignUp = () => {
         body: JSON.stringify({
           username,
           email,
-          password
+          password,
         })
       })
       console.log('Req: ', req);
@@ -85,16 +85,8 @@ const SignUp = () => {
               <input value={password} onChange={(e) => setPassword(e.target.value)} className="outline-none border-gray-500 border p-4 rounded-md w-full" type="password" placeholder="Minimum 6 characters with a number and a letter" />
             </label>
 
-            <label className="text-start">
-              <p className="mt-3">Birthday*</p>
-              <input className="outline-none border-gray-500 border p-4 rounded-md w-full" type="date" />
-            </label>
           </div>
           <div className="w-full p-2">
-            <label className="text-start">
-              <p>Full name*</p>
-              <input className="outline-none border-gray-500 border p-4 rounded-md w-full" type="text" placeholder="Enter your first and last name" />
-            </label>
             <span className="flex mt-7 flex-col">
               <button className="bg-black hover:bg-gray-800 rounded-md text-white font-bold transition-all p-4" onClick={CreateUser}>SIGN UP</button>
               <span className="w-full text-start mt-3">By clicking "SIGN UP", I agree to Magdesign's <Link href={'/'} className="text-blue-600">Terms of Use </Link>and <Link href={'/'} className="text-blue-600">Privacy Policy</Link></span>

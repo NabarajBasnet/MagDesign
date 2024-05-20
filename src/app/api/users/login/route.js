@@ -3,8 +3,10 @@ import User from "@/components/lib/UserModel/userModel";
 import { NextResponse } from "next/server";
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import mongoose from "mongoose";
 
 export const POST = async (req) => {
+
     try {
         await ConnectDatabase()
         const reqBody = await req.json();
@@ -12,7 +14,7 @@ export const POST = async (req) => {
 
         // Validation
         console.log('Req Body: ', reqBody)
-        const user = await User.fineOne({ email });
+        const user = await User.findOne({ email });
 
         if (!user) {
             return NextResponse.json({ error: 'User does not exists' }, { status: 400 })
