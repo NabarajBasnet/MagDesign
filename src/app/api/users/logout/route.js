@@ -8,18 +8,17 @@ export const POST = async (req) => {
     try {
         if (mongoose.connection.readyState < 1) {
             await ConnectDatabase();
-        }
+        };
 
         const response = NextResponse.json({
             message: 'Loged out successfully',
-            success: true
+            success: true,
         });
 
-        response.cookies.set("token", "", {
+        response.cookies.set('token', '', {
             httpOnly: true,
-            expires: new Date(0)
-        });
-
+            expires: new Date(0),
+        })
         return response;
 
     } catch (error) {
