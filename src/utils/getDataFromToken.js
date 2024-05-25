@@ -1,17 +1,15 @@
 import jwt from 'jsonwebtoken'
 
 
-const getDataFromToken = (req)=>
-{
-    try{
-        console.log('GDFT: ', req);
-        const token = req.cookies.get("token") || ''; 
-        const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
-        return decodedToken.id;
+export const getDataFromToken = async (req) => {
+    try {
+        const token = req.cookies.get('token').value
+        console.log('Token: ', token);
+        const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+        console.log('Decoded Token: ', decodedToken);
 
-    }catch(error){
-        throw new Error(error.message)
+        return decodedToken.id
+    } catch (error) {
+        throw new Error('Token not found!');
     }
 }
-
-export default getDataFromToken;

@@ -10,51 +10,51 @@ import jwt from 'jsonwebtoken'
 
 export const POST = async (req) => {
     try {
-        // Connect database
         await ConnectDatabase();
 
-        // Extract login credentials
+        // Extract credentials from request body
         const reqBody = await req.json();
         const { email, password } = reqBody;
 
         // Validate user
         const user = await User.findOne({ email });
         if (!user) {
-            return NextResponse.json({ error: "User does't exists!" }, { status: 400 });
+            return NextResponse.json({ error: "User doesn't exists!" }, { status: 400 });
         }
 
+        // Validate if user is verified
         const isVerified = await User.findOne({ isVerified: true });
         if (!isVerified) {
-            return NextResponse.json({ error: 'Verify your email first!' }, { status: 401 })
+            return NextResponse.json({ error: 'Verify your email first' }, { status: 401 });
         }
 
-        // Validate password
+        // Validate password 
         const validatePassword = await bcryptjs.compare(password, user.password);
         if (!validatePassword) {
-            return NextResponse.json({ error: "Check your credentials!" }, { status: 402 });
+            return NextResponse.json({ error: "Invalid password!" }, { status: 402 });
         }
 
         const tokenData = {
             id: user._id,
             username: user.username,
             email: user.email
-        };
+        }
 
         const token = jwt.sign(tokenData, process.env.TOKEN_SECRET, { expiresIn: '1h' });
 
         const response = NextResponse.json({
-            message: 'Loged In',
+            message: 'Loged In successfully',
             success: true,
-            token
+            data: token
         });
 
         response.cookies.set("token", token, {
-            httpOnly: true
+            httpOnly: true,
         });
-        return response;
+        return response
 
     } catch (error) {
         console.log('Error: ', error.message);
-        return NextResponse.json({ message: error.message }, { status: 500 })
+        return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
