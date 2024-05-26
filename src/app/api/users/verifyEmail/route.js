@@ -11,11 +11,14 @@ export const POST = async (req) => {
         if(mongoose.connection.readyState <1 ){
             await ConnectDatabase();
         };
+        // const reqBody = await req.json();
+        // const {token} = reqBody;
 
         // Extract token from url
 
         const newUrl = new URL(req.url);
         const token = newUrl.searchParams.get('token');
+        console.log('Request token: ', token);
 
         // Validate user
 

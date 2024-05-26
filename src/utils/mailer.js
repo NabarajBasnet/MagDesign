@@ -32,10 +32,10 @@ const sendEmail = async ({ email, emailType, userId }) => {
             host: "sandbox.smtp.mailtrap.io",
             port: 2525,
             auth: {
-                user: "8f07bdbe7ec256",
-                pass: "5aaf3005d665b9"
+              user: "90987e3d2df75e",
+              pass: "630892aa1d0583"
             }
-        });
+          });
 
         const mailOptions = {
             from: 'noreply@example.com', // Replace with your sender address

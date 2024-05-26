@@ -7,21 +7,33 @@ const VerifyEmail = () => {
     const router = useRouter();
     const [token, setToken] = useState('');
     const [verified, setVerified] = useState(false);
-    const [error, setError] = useState(false);
+    const [Error, setError] = useState(false);
+    const [verifying, setVerifying] = useState(false);
+    console.log('Verifying: ', verifying);
 
     const verifyUserEmail = async () => {
         try {
-            const res = await fetch(`http://localhost:3000/api/users/verifyEmail`, {
+            setVerifying(true);
+            const res = await fetch(`http://localhost:3000/api/users/verifyEmail?token=${token}`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json" // Add this line
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ token }),
             });
             if (res.ok) {
+                setTimeout(() => {
+                    setVerified(false);
+                }, 2500);
                 setVerified(true);
-            } else {
-                setError(true);
+                setVerifying(false);
+            }
+            else if (!res.ok) {
+                setTimeout(() => {
+                    setError(false)
+                }, 2500);
+                setError(true)
+                setVerifying(false);
             }
         } catch (error) {
             console.log('Error: ', error.message);
@@ -35,34 +47,27 @@ const VerifyEmail = () => {
         console.log('Token: ', urlToken);
     }, []);
 
-    useEffect(() => {
-        if (token.length > 0) {
-            verifyUserEmail();
-        }
-    }, [token]);
 
     return (
         <section className="mx-auto px-4">
-            <div className="flex flex-col justify-center items-center">
-                <h1 className="text-2xl">Verify email</h1>
-                <div>
-                    <button onClick={verifyUserEmail} className="bg-blue-500 text-white font-bold p-2 w-40 rounded-md hover:drop-shadow-xl transition-all">
-                        Verify Email
+            <div className="flex flex-col w-full justify-center items-center">
+                <img src="/images/verificationimage.png" className="w-6/12 md:w-3/12" />
+                <h1 className="text-2xl font-bold">Verify your email address</h1>
+                <p className="py-4 text-center">To start using Magdesign, we need to verify your email address.</p>
+                <div className="flex justify-center p-5 w-full">
+                    <button onClick={verifyUserEmail} className="w-full md:w-6/12 hover:bg-gray-700 hover:text-white bg-yellow-500 text-white font-bold p-5 rounded-md hover:drop-shadow-xl transition-all">
+
+                        {verifying ? 'VERIFYING...' : 'CLICK TO VERIFY'}
                     </button>
-                    <h2>
-                        {token ? `${token}` : "No token"}
-                    </h2>
-                    {verified && (
-                        <div>
-                            Log In
-                        </div>
-                    )}
-                    {error && (
-                        <div>
-                            Verification failed. Please try again.
-                        </div>
-                    )}
                 </div>
+                {verified ? (
+                    <h1 className="text-green-600 font-semibold">Email verification successfull</h1>
+                ) : ('')}
+                {Error ? (
+                    <>
+                        <h1 className="text-red-600 font-bold">Error verifying email</h1>
+                    </>
+                ) : ('')}
             </div>
         </section>
     );
