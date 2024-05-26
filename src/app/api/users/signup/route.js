@@ -17,7 +17,7 @@ export const POST = async (req) => {
         // Extract data from request body
         const reqBody = await req.json();
         const { username, email, password } = reqBody;
-        console.log("Request Body: ", reqBody);
+        console.log("Request Body: ", email);
 
         // Validate User
         const user = await User.findOne({ email });

@@ -1,52 +1,62 @@
 'use client'
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 
 const SignUp = () => {
 
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [registring, setRegistring] = useState(false)
-  const [registrationSuccessfull, setRegistrationSuccessfull] = useState(false)
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  console.log('Registring: ', registring);
+  const [buttonDisabled, setButtonDiseabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [registered, setRegistered] = useState(false);
+  const router = useRouter();
 
-  const CreateUser = async () => {
-    const validateFields = !username || !email || !password
-    const validatePassword = password.length >= 6
+  const user = { username, email, password };
 
-    if (!validateFields) {
-      const req = await fetch(`http://localhost:3000/api/users/signup`, {
-        method: 'POST',
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        })
-      })
-      console.log('Req: ', req);
-      if (req.ok) {
-        setTimeout(() => {
-          setRegistrationSuccessfull(false);
-        }, 2000);
-        setRegistrationSuccessfull(true);
+  const onSignUp = async()=>
+  {
+    try {
+      setLoading(true);
+      const res = await fetch(`http://localhost:3000/api/users/signup`,{
+        method:'POST',
+        body: JSON.stringify(user)
+      });
+
+      console.log('RES: ',res);
+      if(res.ok){
+        // router.push('/account/login');
         setUsername('');
         setEmail('');
         setPassword('');
-      }
-      else if (!req.ok) {
-        setTimeout(() => {
-          setRegistring(false)
-        }, 2000)
-        setRegistring(true)
+        setLoading(false);
+        setTimeout(()=>
+        {
+          setRegistered(false);
+        },2000);
+        setRegistered(true);
       }
 
+    } catch (error) {
+      console.log('Signup failed!');
+      toast.error(error.message);
     }
+  };
 
-  }
+  useEffect(()=>
+  {
+    if(username.length >0 && email.length >0 && password.length >0){
+      setButtonDiseabled(false);
+    }
+    else{
+      setButtonDiseabled(true);
+    }
+  },[username, email, password])
 
   return (
     <section className="mx-auto px-4">
@@ -58,21 +68,14 @@ const SignUp = () => {
             here.
           </span>
         </div>
-        {registrationSuccessfull ? (
-          <h1>
-            Registration successfull
-          </h1>
-        ) : ('')}
-        {registring ? (
-          <h1>
-            Registration on process...
-          </h1>
-        ) : ('')}
+        {registered? (
+          <h1 className="text-xl text-green-500 font-bold">Registration successfull</h1>
+        ):('')}
         <div className="w-full md:w-8/12 md:flex bg-white py-10 justify-between">
           <div className="w-full p-2">
             <label className="text-start">
               <p>Username</p>
-              <input value={username} onChange={(e) => setUsername(e.target.value)} className="outline-none border-gray-500 border p-4 rounded-md w-full" placeholder="Username" />
+              <input value={username} onChange={(e)=>setUsername(e.target.value)} className="outline-none border-gray-500 border p-4 rounded-md w-full" placeholder="Username" />
             </label>
 
             <label className="text-start">
@@ -88,7 +91,7 @@ const SignUp = () => {
           </div>
           <div className="w-full p-2">
             <span className="flex mt-7 flex-col">
-              <button className="bg-black hover:bg-gray-800 rounded-md text-white font-bold transition-all p-4" onClick={CreateUser}>SIGN UP</button>
+              <button onClick={onSignUp} className="bg-black hover:bg-gray-800 rounded-md text-white font-bold transition-all p-4">{loading?"Processing...":"SIGN UP"}</button>
               <span className="w-full text-start mt-3">By clicking "SIGN UP", I agree to Magdesign's <Link href={'/'} className="text-blue-600">Terms of Use </Link>and <Link href={'/'} className="text-blue-600">Privacy Policy</Link></span>
             </span>
             <div className="mt-12">
