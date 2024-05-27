@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 const Account = () => {
@@ -51,7 +52,7 @@ const Account = () => {
                                 <img src="/images/user.jpg" className="w-64 border shadow-xl rounded-full mt-4" alt="User"/>
                                 <p className="font-bold py-4">{user.username}</p>
                                 <p className="font-bold ">{user.email}</p>
-                                <button className="text-blue-600 py-4 font-bold w-full">Profile Settings</button>
+                                <Link href={`/account/`+user._id}><p className="text-blue-600 py-4 font-bold w-full">Profile Settings</p></Link>
                                 <button onClick={onLogout} className="bg-red-600 font-bold text-white rounded-full hover:bg-gray-700 transition-all hover:shadow-xl py-4 w-full">Log Out</button>
                             </>
                         )}
