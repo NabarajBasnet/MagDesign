@@ -1,10 +1,45 @@
 'use client'
 
-const { default: Link } = require("next/link")
-
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Login = () => {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [logedIn, setLogedIn] = useState(false);
+  const [logging, setLogging] = useState(false);
+  const [error, setError] = useState(false);
+  const router = useRouter();
+
+  const onLogin = async () => {
+    setLogging(true);
+    try {
+      const res = await fetch(`http://localhost:3000/api/users/login`, {
+        method: "POST",
+        body: JSON.stringify({ email, password })
+      });
+      if (res.ok) {
+        setLogging(false);
+        setTimeout(() => {
+          setLogedIn(false);
+          router.push('/account')
+        }, 1000);
+        setLogedIn(true);
+        setEmail('');
+        setPassword('');
+      }
+      else if (!res.ok) {
+        setError(true);
+        setLogging(false);
+      }
+    } catch (error) {
+      console.log('Error: ', error.message);
+    }
+  };
+
   return (
     <section className="mx-auto px-4 bg-gray-200">
       <div className="w-full">
@@ -20,18 +55,28 @@ const Login = () => {
 
         <div className="w-full  flex justify-center ">
           <div className="w-11/12 md:w-8/12 py-16  md:flex items-center mb-32 bg-white justify-between px-12">
+            {error ? (
+              <>
+                <p className="text-center flex justify-center items-center text-red-600 transition-all font-bold">Check you credentials!</p>
+              </>
+            ) : ('')}
+            {logedIn ? (
+              <>
+                <p className="text-center flex justify-center items-center text-green-600 font-bold transition-all">Loged in successfully</p>
+              </>
+            ) : ('')}
             <div className="w-full md:w-5/12">
               <label className="p-2">
                 <p>
                   Phone Number or Email*
                 </p>
-                <input type="text" placeholder="Please enter your Phone Number or Email" className="border-2 border-gray-600 p-4 w-full rounded-md outline-none" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Please enter your Phone Number or Email" className="border-2 border-gray-600 p-4 w-full rounded-md outline-none" />
               </label>
               <label className="p-2">
                 <p>
                   Password*
                 </p>
-                <input type="password" placeholder="Please enter your password" className="border-2 border-gray-600 p-4 w-full rounded-md outline-none" />
+                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Please enter your password" className="border-2 border-gray-600 p-4 w-full rounded-md outline-none" />
               </label>
               <div className="flex justify-between mt-5">
                 <h1></h1>
@@ -40,7 +85,7 @@ const Login = () => {
               </div>
             </div>
             <div className="w-full md:w-5/12">
-              <button className="w-full transition-all  bg-black p-4 text-white my-2 rounded-md hover:bg-gray-800 font-bold">LOG IN</button>
+              <button onClick={onLogin} className="w-full transition-all  bg-black p-4 text-white my-2 rounded-md hover:bg-gray-800 font-bold">{logging ? "Processing..." : "LOG IN"}</button>
               <p>Or, login with</p>
               <button className="w-full transition-all bg-black p-4 text-white my-2 rounded-md hover:bg-gray-800 font-bold">Login In Facebook</button>
               <button className="w-full transition-all bg-black p-4 text-white my-2 rounded-md hover:bg-gray-800 font-bold">Login In Google</button>
